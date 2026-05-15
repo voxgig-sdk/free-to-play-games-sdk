@@ -1,0 +1,17 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 1
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: game: {
+    path: "/game": {
+      op: list: method: *GET
+    }
+    path: "/games": {
+      op: list: method: *GET
+    }
+  }
+
+}

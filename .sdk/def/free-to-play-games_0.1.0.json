@@ -1,0 +1,332 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Free-To-Play Games",
+    "description": "The Free-To-Play Games Database API offers programmatic access to a comprehensive collection of the best free games available. Users can retrieve detailed information about various games, including genres, developers, and release dates, without any restrictions or authentication required.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Documentation",
+      "url": "https://www.freetogame.com/api-doc"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://www.freetogame.com/api",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/games": {
+      "get": {
+        "summary": "Get list of games",
+        "description": "Retrieve a list of free-to-play games with optional filtering by platform, category, and sort order",
+        "operationId": "getGames",
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "platform",
+            "in": "query",
+            "description": "Filter games by platform (e.g., pc, browser, all)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "pc",
+                "browser",
+                "all"
+              ],
+              "default": "all"
+            }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Filter games by category/genre (e.g., mmorpg, shooter, strategy, moba, racing, sports, social, sandbox, open-world, survival, pvp, pve, pixel, voxel, zombie, turn-based, first-person, third-person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, card, battle-royale, mmo, mmofps, mmotps, 3d, 2d, anime, fantasy, sci-fi, fighting, action-rpg, action, military, martial-arts, flight, low-spec, tower-defense, horror, mmorts)",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort-by",
+            "in": "query",
+            "description": "Sort games by criteria (e.g., release-date, popularity, alphabetical, relevance)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "release-date",
+                "popularity",
+                "alphabetical",
+                "relevance"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with list of games",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Game"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 540,
+                    "title": "Overwatch 2",
+                    "thumbnail": "https://www.freetogame.com/g/540/thumbnail.jpg",
+                    "short_description": "A hero-focused first-person team shooter from Blizzard Entertainment.",
+                    "game_url": "https://www.freetogame.com/open/overwatch-2",
+                    "genre": "Shooter",
+                    "platform": "PC (Windows)",
+                    "publisher": "Activision Blizzard",
+                    "developer": "Blizzard Entertainment",
+                    "release_date": "2022-10-04",
+                    "freetogame_profile_url": "https://www.freetogame.com/overwatch-2"
+                  }
+                ]
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game": {
+      "get": {
+        "summary": "Get game details by ID",
+        "description": "Retrieve detailed information about a specific game by its ID",
+        "operationId": "getGameById",
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "The ID of the game to retrieve",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with game details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameDetails"
+                },
+                "example": {
+                  "id": 540,
+                  "title": "Overwatch 2",
+                  "thumbnail": "https://www.freetogame.com/g/540/thumbnail.jpg",
+                  "status": "Live",
+                  "short_description": "A hero-focused first-person team shooter from Blizzard Entertainment.",
+                  "description": "Overwatch 2 is a free-to-play, team-based action game set in the optimistic future...",
+                  "game_url": "https://www.freetogame.com/open/overwatch-2",
+                  "genre": "Shooter",
+                  "platform": "Windows",
+                  "publisher": "Activision Blizzard",
+                  "developer": "Blizzard Entertainment",
+                  "release_date": "2022-10-04",
+                  "freetogame_profile_url": "https://www.freetogame.com/overwatch-2",
+                  "minimum_system_requirements": {
+                    "os": "Windows 10 64-bit",
+                    "processor": "Intel Core i3 or AMD Phenom X3 8650",
+                    "memory": "6 GB RAM",
+                    "graphics": "NVIDIA GeForce GTX 600 series, AMD Radeon HD 7000 series",
+                    "storage": "50 GB"
+                  },
+                  "screenshots": [
+                    {
+                      "id": 1,
+                      "image": "https://www.freetogame.com/g/540/screenshot1.jpg"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Game not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Game": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the game"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title of the game"
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the game's thumbnail image"
+          },
+          "short_description": {
+            "type": "string",
+            "description": "Brief description of the game"
+          },
+          "game_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to play or download the game"
+          },
+          "genre": {
+            "type": "string",
+            "description": "Genre or category of the game"
+          },
+          "platform": {
+            "type": "string",
+            "description": "Platform(s) the game is available on"
+          },
+          "publisher": {
+            "type": "string",
+            "description": "Publisher of the game"
+          },
+          "developer": {
+            "type": "string",
+            "description": "Developer of the game"
+          },
+          "release_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Release date of the game in YYYY-MM-DD format"
+          },
+          "freetogame_profile_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the game's profile page on FreeToGame"
+          }
+        }
+      },
+      "GameDetails": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Game"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Current status of the game (e.g., Live, Beta)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Full description of the game"
+              },
+              "minimum_system_requirements": {
+                "type": "object",
+                "description": "Minimum system requirements for PC games",
+                "properties": {
+                  "os": {
+                    "type": "string",
+                    "description": "Operating system requirement"
+                  },
+                  "processor": {
+                    "type": "string",
+                    "description": "Processor requirement"
+                  },
+                  "memory": {
+                    "type": "string",
+                    "description": "Memory (RAM) requirement"
+                  },
+                  "graphics": {
+                    "type": "string",
+                    "description": "Graphics card requirement"
+                  },
+                  "storage": {
+                    "type": "string",
+                    "description": "Storage space requirement"
+                  }
+                }
+              },
+              "screenshots": {
+                "type": "array",
+                "description": "Array of screenshot images",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "Screenshot identifier"
+                    },
+                    "image": {
+                      "type": "string",
+                      "format": "uri",
+                      "description": "URL to the screenshot image"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Error message"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Games",
+      "description": "Operations related to free-to-play games"
+    }
+  ]
+}

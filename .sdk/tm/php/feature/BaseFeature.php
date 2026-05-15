@@ -1,0 +1,37 @@
+<?php
+declare(strict_types=1);
+
+// FreeToPlayGames SDK base feature
+
+class FreeToPlayGamesBaseFeature
+{
+    public string $version;
+    public string $name;
+    public bool $active;
+
+    public function __construct()
+    {
+        $this->version = '0.0.1';
+        $this->name = 'base';
+        $this->active = true;
+    }
+
+    public function get_version(): string { return $this->version; }
+    public function get_name(): string { return $this->name; }
+    public function get_active(): bool { return $this->active; }
+
+    public function init(FreeToPlayGamesContext $ctx, array $options): void {}
+    public function PostConstruct(FreeToPlayGamesContext $ctx): void {}
+    public function PostConstructEntity(FreeToPlayGamesContext $ctx): void {}
+    public function SetData(FreeToPlayGamesContext $ctx): void {}
+    public function GetData(FreeToPlayGamesContext $ctx): void {}
+    public function GetMatch(FreeToPlayGamesContext $ctx): void {}
+    public function SetMatch(FreeToPlayGamesContext $ctx): void {}
+    public function PrePoint(FreeToPlayGamesContext $ctx): void {}
+    public function PreSpec(FreeToPlayGamesContext $ctx): void {}
+    public function PreRequest(FreeToPlayGamesContext $ctx): void {}
+    public function PreResponse(FreeToPlayGamesContext $ctx): void {}
+    public function PreResult(FreeToPlayGamesContext $ctx): void {}
+    public function PreDone(FreeToPlayGamesContext $ctx): void {}
+    public function PreUnexpected(FreeToPlayGamesContext $ctx): void {}
+}

@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "game": {
+      "GAME00": {
+        "description": "s96",
+        "developer": "s97",
+        "freetogame_profile_url": "s98",
+        "game_url": "s99",
+        "genre": "s9a",
+        "id": "GAME00",
+        "minimum_system_requirement": {},
+        "platform": "s9d",
+        "publisher": "s9e",
+        "release_date": "s9f",
+        "screenshot": [],
+        "short_description": "sa1",
+        "status": "sa2",
+        "thumbnail": "sa3",
+        "title": "sa4"
+      },
+      "GAME01": {
+        "description": "s12c",
+        "developer": "s12d",
+        "freetogame_profile_url": "s12e",
+        "game_url": "s12f",
+        "genre": "s130",
+        "id": "GAME01",
+        "minimum_system_requirement": {},
+        "platform": "s133",
+        "publisher": "s134",
+        "release_date": "s135",
+        "screenshot": [],
+        "short_description": "s137",
+        "status": "s138",
+        "thumbnail": "s139",
+        "title": "s13a"
+      },
+      "GAME02": {
+        "description": "s1c2",
+        "developer": "s1c3",
+        "freetogame_profile_url": "s1c4",
+        "game_url": "s1c5",
+        "genre": "s1c6",
+        "id": "GAME02",
+        "minimum_system_requirement": {},
+        "platform": "s1c9",
+        "publisher": "s1ca",
+        "release_date": "s1cb",
+        "screenshot": [],
+        "short_description": "s1cd",
+        "status": "s1ce",
+        "thumbnail": "s1cf",
+        "title": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "game": {
+      "game_ref01": {
+        "description": "s258",
+        "developer": "s259",
+        "freetogame_profile_url": "s25a",
+        "game_url": "s25b",
+        "genre": "s25c",
+        "minimum_system_requirement": {},
+        "platform": "s25f",
+        "publisher": "s260",
+        "release_date": "s261",
+        "screenshot": [],
+        "short_description": "s263",
+        "status": "s264",
+        "thumbnail": "s265",
+        "title": "s266"
+      }
+    }
+  }
+}
