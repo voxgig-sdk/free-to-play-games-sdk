@@ -3,7 +3,7 @@ package utility
 import (
 	"reflect"
 
-	"github.com/voxgig-sdk/free-to-play-games-sdk/core"
+	"github.com/voxgig-sdk/free-to-play-games-sdk/go/core"
 )
 
 func featureHookUtil(ctx *core.Context, name string) {

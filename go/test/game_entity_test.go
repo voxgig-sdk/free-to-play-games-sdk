@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/free-to-play-games-sdk"
-	"github.com/voxgig-sdk/free-to-play-games-sdk/core"
+	sdk "github.com/voxgig-sdk/free-to-play-games-sdk/go"
+	"github.com/voxgig-sdk/free-to-play-games-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/free-to-play-games-sdk/go/utility/struct"
 )
 
 func TestGameEntity(t *testing.T) {

@@ -1,10 +1,10 @@
 package voxgigfreetoplaygamessdk
 
 import (
-	"github.com/voxgig-sdk/free-to-play-games-sdk/core"
-	"github.com/voxgig-sdk/free-to-play-games-sdk/entity"
-	"github.com/voxgig-sdk/free-to-play-games-sdk/feature"
-	_ "github.com/voxgig-sdk/free-to-play-games-sdk/utility"
+	"github.com/voxgig-sdk/free-to-play-games-sdk/go/core"
+	"github.com/voxgig-sdk/free-to-play-games-sdk/go/entity"
+	"github.com/voxgig-sdk/free-to-play-games-sdk/go/feature"
+	_ "github.com/voxgig-sdk/free-to-play-games-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
