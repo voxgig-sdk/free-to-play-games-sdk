@@ -63,14 +63,12 @@ function game_direct_setup(mockres)
   local env = runner.env_override({
     ["FREETOPLAYGAMES_TEST_GAME_ENTID"] = {},
     ["FREETOPLAYGAMES_TEST_LIVE"] = "FALSE",
-    ["FREETOPLAYGAMES_APIKEY"] = "NONE",
   })
 
   local live = env["FREETOPLAYGAMES_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["FREETOPLAYGAMES_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

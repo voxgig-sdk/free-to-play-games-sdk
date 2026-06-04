@@ -17,9 +17,7 @@ loading a specific record.
 ```ts
 import { FreeToPlayGamesSDK } from 'free-to-play-games'
 
-const client = new FreeToPlayGamesSDK({
-  apikey: process.env.FREE-TO-PLAY-GAMES_APIKEY,
-})
+const client = new FreeToPlayGamesSDK({})
 ```
 
 ### 2. List games
@@ -84,7 +82,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new FreeToPlayGamesSDK({ apikey: '...' })
+const client = new FreeToPlayGamesSDK()
 const testClient = client.tester()
 ```
 
@@ -120,7 +118,6 @@ const logger = {
 }
 
 const client = new FreeToPlayGamesSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -131,7 +128,6 @@ Create a `.env.local` file at the project root:
 
 ```
 FREE-TO-PLAY-GAMES_TEST_LIVE=TRUE
-FREE-TO-PLAY-GAMES_APIKEY=<your-key>
 ```
 
 Then run:
@@ -149,7 +145,6 @@ cd ts && npm test
 
 ```ts
 new FreeToPlayGamesSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -160,7 +155,6 @@ new FreeToPlayGamesSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

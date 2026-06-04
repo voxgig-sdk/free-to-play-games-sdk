@@ -68,14 +68,12 @@ function game_direct_setup($mockres)
     $env = Runner::env_override([
         "FREETOPLAYGAMES_TEST_GAME_ENTID" => [],
         "FREETOPLAYGAMES_TEST_LIVE" => "FALSE",
-        "FREETOPLAYGAMES_APIKEY" => "NONE",
     ]);
 
     $live = $env["FREETOPLAYGAMES_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["FREETOPLAYGAMES_APIKEY"],
         ];
         $client = new FreeToPlayGamesSDK($merged_opts);
         return [
