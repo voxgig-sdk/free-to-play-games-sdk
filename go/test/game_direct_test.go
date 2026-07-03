@@ -93,12 +93,14 @@ func gameDirectSetup(mockres any) *gameDirectSetupResult {
 	env := envOverride(map[string]any{
 		"FREETOPLAYGAMES_TEST_GAME_ENTID": map[string]any{},
 		"FREETOPLAYGAMES_TEST_LIVE":    "FALSE",
+		"FREETOPLAYGAMES_APIKEY":       "NONE",
 	})
 
 	live := env["FREETOPLAYGAMES_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["FREETOPLAYGAMES_APIKEY"],
 		}
 		client := sdk.NewFreeToPlayGamesSDK(mergedOpts)
 

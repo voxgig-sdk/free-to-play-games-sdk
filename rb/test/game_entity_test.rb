@@ -83,6 +83,7 @@ def game_basic_setup(extra)
     "FREETOPLAYGAMES_TEST_GAME_ENTID" => idmap,
     "FREETOPLAYGAMES_TEST_LIVE" => "FALSE",
     "FREETOPLAYGAMES_TEST_EXPLAIN" => "FALSE",
+    "FREETOPLAYGAMES_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,6 +95,7 @@ def game_basic_setup(extra)
   if env["FREETOPLAYGAMES_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["FREETOPLAYGAMES_APIKEY"],
       },
       extra || {},
     ])

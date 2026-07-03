@@ -79,12 +79,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'FREETOPLAYGAMES_TEST_GAME_ENTID': {},
     'FREETOPLAYGAMES_TEST_LIVE': 'FALSE',
+    'FREETOPLAYGAMES_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.FREETOPLAYGAMES_TEST_LIVE
 
   if (live) {
     const client = new FreeToPlayGamesSDK({
+      apikey: env.FREETOPLAYGAMES_APIKEY,
     })
 
     let idmap: any = env['FREETOPLAYGAMES_TEST_GAME_ENTID']

@@ -92,6 +92,7 @@ function game_basic_setup(extra)
     ["FREETOPLAYGAMES_TEST_GAME_ENTID"] = idmap,
     ["FREETOPLAYGAMES_TEST_LIVE"] = "FALSE",
     ["FREETOPLAYGAMES_TEST_EXPLAIN"] = "FALSE",
+    ["FREETOPLAYGAMES_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function game_basic_setup(extra)
   if env["FREETOPLAYGAMES_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["FREETOPLAYGAMES_APIKEY"],
       },
       extra or {},
     })

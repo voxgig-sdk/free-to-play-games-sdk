@@ -1,19 +1,8 @@
 # FreeToPlayGames SDK
 
-Browse free-to-play PC and browser games with genres, developers, platforms, and release dates
+Free-To-Play Games client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Free-To-Play Games
-
-The Free-To-Play Games Database API, provided by [FreeToGame](https://www.freetogame.com/api), exposes a catalogue of free-to-play PC and browser games. It is a community-oriented service that aggregates titles along with descriptive metadata such as genre, developer, publisher, and release date.
-
-What you get from the API:
-- A listing of free-to-play games, filterable by platform (e.g. `pc`, `browser`)
-- Game records including title, genre, developer, publisher, release date, and platform
-- No authentication, no API key, and CORS enabled for direct browser use
-
-The service is reported to be reliable with low latency and stable uptime. Because no key is needed it is well suited for prototypes, dashboards, and personal projects that need a quick source of game catalogue data.
 
 ## Try it
 
@@ -47,29 +36,31 @@ gem install free-to-play-games-sdk
 luarocks install free-to-play-games-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { FreeToPlayGamesSDK } from 'free-to-play-games'
 
-const client = new FreeToPlayGamesSDK({})
+const client = new FreeToPlayGamesSDK({
+  apikey: process.env.FREE-TO-PLAY-GAMES_APIKEY,
+})
 
 // List all games
 const games = await client.Game().list()
+console.log(games.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -99,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Game** | A free-to-play title with metadata such as genre, developer, publisher, release date, and platform; available via `GET /games` (e.g. `https://www.freetogame.com/api/games?platform=pc`). | `/games` |
+| **Game** |  | `/games` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -109,12 +100,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from freetoplaygames_sdk import FreeToPlayGamesSDK
 
-client = FreeToPlayGamesSDK({})
+client = FreeToPlayGamesSDK({
+    "apikey": os.environ.get("FREE-TO-PLAY-GAMES_APIKEY"),
+})
 
 # List all games
-games, err = client.Game(None).list(None, None)
+games, err = client.Game().list()
+print(games)
 ```
 
 ### PHP
@@ -123,10 +118,13 @@ games, err = client.Game(None).list(None, None)
 <?php
 require_once 'freetoplaygames_sdk.php';
 
-$client = new FreeToPlayGamesSDK([]);
+$client = new FreeToPlayGamesSDK([
+    "apikey" => getenv("FREE-TO-PLAY-GAMES_APIKEY"),
+]);
 
 // List all games
-[$games, $err] = $client->Game(null)->list(null, null);
+[$games, $err] = $client->Game()->list();
+print_r($games);
 ```
 
 ### Golang
@@ -134,10 +132,13 @@ $client = new FreeToPlayGamesSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/free-to-play-games-sdk/go"
 
-client := sdk.NewFreeToPlayGamesSDK(map[string]any{})
+client := sdk.NewFreeToPlayGamesSDK(map[string]any{
+    "apikey": os.Getenv("FREE-TO-PLAY-GAMES_APIKEY"),
+})
 
 // List all games
 games, err := client.Game(nil).List(nil, nil)
+fmt.Println(games)
 ```
 
 ### Ruby
@@ -145,10 +146,13 @@ games, err := client.Game(nil).List(nil, nil)
 ```ruby
 require_relative "FreeToPlayGames_sdk"
 
-client = FreeToPlayGamesSDK.new({})
+client = FreeToPlayGamesSDK.new({
+  "apikey" => ENV["FREE-TO-PLAY-GAMES_APIKEY"],
+})
 
 # List all games
-games, err = client.Game(nil).list(nil, nil)
+games, err = client.Game().list
+puts games
 ```
 
 ### Lua
@@ -156,10 +160,13 @@ games, err = client.Game(nil).list(nil, nil)
 ```lua
 local sdk = require("free-to-play-games_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("FREE-TO-PLAY-GAMES_APIKEY"),
+})
 
 -- List all games
-local games, err = client:Game(nil):list(nil, nil)
+local games, err = client:Game():list()
+print(games)
 ```
 
 ## Unit testing in offline mode
@@ -178,25 +185,21 @@ const result = await client.Game().load({ id: 'test01' })
 ### Python
 
 ```python
-client = FreeToPlayGamesSDK.test(None, None)
-result, err = client.Game(None).load(
-    {"id": "test01"}, None
-)
+client = FreeToPlayGamesSDK.test()
+result, err = client.Game().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = FreeToPlayGamesSDK::test(null, null);
-[$result, $err] = $client->Game(null)->load(
-    ["id" => "test01"], null
-);
+$client = FreeToPlayGamesSDK::test();
+[$result, $err] = $client->Game()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Game(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -205,19 +208,15 @@ result, err := client.Game(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeToPlayGamesSDK.test(nil, nil)
-result, err = client.Game(nil).load(
-  { "id" => "test01" }, nil
-)
+client = FreeToPlayGamesSDK.test
+result, err = client.Game().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Game(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Game():load({ id = "test01" })
 ```
 
 ## How it works
@@ -321,16 +320,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Free-To-Play Games
-
-- Upstream: [https://www.freetogame.com/api](https://www.freetogame.com/api)
-- API docs: [https://www.freetogame.com/api-doc](https://www.freetogame.com/api-doc)
-
-- Open public API requiring no API key or authentication
-- CORS is enabled, suitable for browser-side calls
-- Usage is governed by FreeToGame's site terms; check the homepage for current conditions
-- Attribution to FreeToGame.com is good practice when redistributing data
 
 ---
 

@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'FREE_TO_PLAY_GAMES_TEST_GAME_ENTID': idmap,
     'FREE_TO_PLAY_GAMES_TEST_LIVE': 'FALSE',
     'FREE_TO_PLAY_GAMES_TEST_EXPLAIN': 'FALSE',
+    'FREE_TO_PLAY_GAMES_APIKEY': 'NONE',
   })
 
   idmap = env['FREE_TO_PLAY_GAMES_TEST_GAME_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new FreeToPlayGamesSDK(merge([
       {
+        apikey: env.FREE_TO_PLAY_GAMES_APIKEY,
       },
       extra
     ]))

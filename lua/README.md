@@ -1,6 +1,11 @@
 # FreeToPlayGames Lua SDK
 
-The Lua SDK for the FreeToPlayGames API. Provides an entity-oriented interface using Lua conventions.
+
+
+The Lua SDK for the FreeToPlayGames API — an entity-oriented client using Lua conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -26,13 +31,15 @@ loading a specific record.
 ```lua
 local sdk = require("free-to-play-games_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("FREE-TO-PLAY-GAMES_APIKEY"),
+})
 ```
 
 ### 2. List games
 
 ```lua
-local result, err = client:Game(nil):list(nil, nil)
+local result, err = client:Game():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -84,11 +91,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 
-local result, err = client:FreeToPlayGames(nil):load(
-  { id = "test01" }, nil
-)
+local result, err = client:FreeToPlayGames():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -122,6 +127,7 @@ Create a `.env.local` file at the project root:
 
 ```
 FREE-TO-PLAY-GAMES_TEST_LIVE=TRUE
+FREE-TO-PLAY-GAMES_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,6 +150,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

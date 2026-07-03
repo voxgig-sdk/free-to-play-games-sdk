@@ -17,26 +17,7 @@ main: {
       ]
       title: "Free-To-Play Games"
       version: "1.0.0"
-      tagline: "Browse free-to-play PC and browser games with genres, developers, platforms, and release dates"
-      homepage: "https://www.freetogame.com/api"
-      docs_url: "https://www.freetogame.com/api-doc"
-      license_short: "Public API, no authentication required; usage subject to FreeToGame terms"
-      license_md: `- Open public API requiring no API key or authentication
-- CORS is enabled, suitable for browser-side calls
-- Usage is governed by FreeToGame's site terms; check the homepage for current conditions
-- Attribution to FreeToGame.com is good practice when redistributing data`
-      about_md: `The Free-To-Play Games Database API, provided by [FreeToGame](https://www.freetogame.com/api), exposes a catalogue of free-to-play PC and browser games. It is a community-oriented service that aggregates titles along with descriptive metadata such as genre, developer, publisher, and release date.
-
-What you get from the API:
-- A listing of free-to-play games, filterable by platform (e.g. \`pc\`, \`browser\`)
-- Game records including title, genre, developer, publisher, release date, and platform
-- No authentication, no API key, and CORS enabled for direct browser use
-
-The service is reported to be reliable with low latency and stable uptime. Because no key is needed it is well suited for prototypes, dashboards, and personal projects that need a quick source of game catalogue data.`
-      entity_desc: {
-        game: "A free-to-play title with metadata such as genre, developer, publisher, release date, and platform; available via `GET /games` (e.g. `https://www.freetogame.com/api/games?platform=pc`)."
-      }
-      auth: false
     }
   }
 }
+
