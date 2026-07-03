@@ -10,7 +10,7 @@ The Python SDK for the FreeToPlayGames API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install free-to-play-games-sdk
+pip install voxgig-sdk-free-to-play-games
 ```
 
 Or install from source:

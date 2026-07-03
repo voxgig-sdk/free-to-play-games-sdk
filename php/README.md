@@ -10,7 +10,7 @@ The PHP SDK for the FreeToPlayGames API — an entity-oriented client using PHP 
 
 ## Install
 ```bash
-composer require voxgig/free-to-play-games-sdk
+composer require voxgig-sdk/free-to-play-games
 ```
 
 

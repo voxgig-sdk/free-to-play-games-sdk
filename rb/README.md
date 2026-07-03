@@ -10,13 +10,13 @@ The Ruby SDK for the FreeToPlayGames API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install free-to-play-games-sdk
+gem install voxgig-sdk-free-to-play-games
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "free-to-play-games-sdk"
+gem "voxgig-sdk-free-to-play-games"
 ```
 
 Then run:

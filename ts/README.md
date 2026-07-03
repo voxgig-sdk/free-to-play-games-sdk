@@ -10,7 +10,7 @@ The TypeScript SDK for the FreeToPlayGames API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install free-to-play-games
+npm install @voxgig-sdk/free-to-play-games
 ```
 ## Tutorial: your first API call
 
