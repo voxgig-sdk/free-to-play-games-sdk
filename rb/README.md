@@ -28,16 +28,14 @@ require_relative "FreeToPlayGames_sdk"
 client = FreeToPlayGamesSDK.new
 ```
 
-### 2. List games
+### 2. List game records
 
 ```ruby
 begin
-  result = client.game.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Game records — iterate directly.
+  games = client.Game.list
+  games.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = FreeToPlayGamesSDK.test
+client = FreeToPlayGamesSDK.test({
+  "entity" => { "game" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.game.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+game = client.Game.load({ "id" => "test01" })
+puts game
 ```
 
 ### Use a custom fetch function
@@ -237,7 +239,7 @@ API path: `/games`
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `game = client.Game`
 
 #### Operations
 
@@ -267,8 +269,9 @@ Create an instance: `const game = client.game`
 
 #### Example: List
 
-```ts
-const games = await client.game.list()
+```ruby
+# list returns an Array of Game records (raises on error).
+games = client.Game.list
 ```
 
 
@@ -343,7 +346,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-game = client.game
+game = client.Game
 game.load({ "id" => "example_id" })
 
 # game.data_get now returns the loaded game data

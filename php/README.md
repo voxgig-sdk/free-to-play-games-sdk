@@ -29,18 +29,16 @@ require_once 'freetoplaygames_sdk.php';
 $client = new FreeToPlayGamesSDK();
 ```
 
-### 2. List games
+### 2. List game records
 
 ```php
 try {
-    $result = $client->game()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Game records — iterate directly.
+    $games = $client->Game()->list();
+    foreach ($games as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = FreeToPlayGamesSDK::test();
+$client = FreeToPlayGamesSDK::test([
+    "entity" => ["game" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->game()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$game = $client->Game()->load(["id" => "test01"]);
+print_r($game);
 ```
 
 ### Use a custom fetch function
@@ -242,7 +244,7 @@ API path: `/games`
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `$game = $client->Game();`
 
 #### Operations
 
@@ -272,8 +274,9 @@ Create an instance: `const game = client.game`
 
 #### Example: List
 
-```ts
-const games = await client.game.list()
+```php
+// list() returns an array of Game records (throws on error).
+$games = $client->Game()->list();
 ```
 
 
@@ -348,7 +351,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$game = $client->game();
+$game = $client->Game();
 $game->load(["id" => "example_id"]);
 
 // $game->dataGet() now returns the loaded game data

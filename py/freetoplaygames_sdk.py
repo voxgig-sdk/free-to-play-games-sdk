@@ -220,25 +220,15 @@ class FreeToPlayGamesSDK:
         }
 
 
-    @property
-    def game(self):
-        """Idiomatic facade: client.game.list() / client.game.load({"id": ...})."""
-        from entity.game_entity import GameEntity
-        cached = getattr(self, "_game", None)
-        if cached is None:
-            cached = GameEntity(self, None)
-            self._game = cached
-        return cached
-
-    def Game(self, data=None):
-        # Deprecated: use client.game instead.
+    def Game(self, data=None) -> "GameEntity":
+        """Entity factory: client.Game().list({}) / client.Game().load({"id": ...})."""
         from entity.game_entity import GameEntity
         return GameEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "FreeToPlayGamesSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class FreeToPlayGamesSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.game_entity import GameEntity

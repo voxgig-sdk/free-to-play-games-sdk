@@ -83,7 +83,7 @@ same parameters as `direct()`.
 ## GameEntity
 
 ```lua
-local game = client:game(nil)
+local game = client:Game(nil)
 ```
 
 ### Fields
@@ -113,7 +113,7 @@ local game = client:game(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:game():list()
+local results, err = client:Game():list()
 ```
 
 ### Common Methods

@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## GameEntity
 
 ```ruby
-game = client.game
+game = client.Game
 ```
 
 ### Fields
@@ -116,7 +116,7 @@ game = client.game
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.game.list(nil)
+results = client.Game.list(nil)
 ```
 
 ### Common Methods

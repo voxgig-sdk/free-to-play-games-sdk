@@ -233,10 +233,10 @@ class FreeToPlayGamesSDK
 
     private $_game = null;
 
-    // Idiomatic facade: $client->game()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Game() (PHP method
-    // names are case-insensitive).
-    public function game($data = null)
+    // Canonical facade: $client->Game()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->game()
+    // resolves here too.
+    public function Game($data = null)
     {
         require_once __DIR__ . '/entity/game_entity.php';
         if ($data === null) {

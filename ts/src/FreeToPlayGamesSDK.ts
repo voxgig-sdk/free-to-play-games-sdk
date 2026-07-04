@@ -204,14 +204,7 @@ class FreeToPlayGamesSDK {
 
 
 
-  _game?: GameEntity
-
-  // Idiomatic facade: `client.game.list()` / `client.game.load({ id })`.
-  get game(): GameEntity {
-    return (this._game ??= new GameEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.game` instead. */
+  // Entity access: `client.Game().list()` / `client.Game().load({ id })`.
   Game(data?: any) {
     const self = this
     return new GameEntity(self,data)

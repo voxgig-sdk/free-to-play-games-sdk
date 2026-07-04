@@ -26,9 +26,11 @@ import { FreeToPlayGamesSDK } from '@voxgig-sdk/free-to-play-games'
 
 const client = new FreeToPlayGamesSDK()
 
-// List all games
-const games = await client.game.list()
-console.log(games.data)
+// List all games (returns Game[])
+const games = await client.Game().list()
+for (const game of games) {
+  console.log(game)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,9 +85,10 @@ from freetoplaygames_sdk import FreeToPlayGamesSDK
 
 client = FreeToPlayGamesSDK()
 
-# List all games
-games = client.game.list()
-print(games)
+# List all games (returns a list, raises on error)
+games = client.Game().list({})
+for game in games:
+    print(game)
 ```
 
 ### PHP
@@ -96,8 +99,8 @@ require_once 'freetoplaygames_sdk.php';
 
 $client = new FreeToPlayGamesSDK();
 
-// List all games (throws on error)
-$games = $client->game()->list();
+// List all games (returns an array; throws on error)
+$games = $client->Game()->list();
 print_r($games);
 ```
 
@@ -120,8 +123,8 @@ require_relative "FreeToPlayGames_sdk"
 
 client = FreeToPlayGamesSDK.new
 
-# List all games
-games = client.game.list
+# List all games (returns an Array; raises on error)
+games = client.Game.list
 puts games
 ```
 
@@ -133,7 +136,7 @@ local sdk = require("free-to-play-games_sdk")
 local client = sdk.new()
 
 -- List all games
-local games, err = client:game():list()
+local games, err = client:Game():list()
 print(games)
 ```
 
@@ -146,22 +149,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = FreeToPlayGamesSDK.test()
-const result = await client.game.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const game = await client.Game().load({ id: 1 })
+// game is a bare Game populated with mock data
+console.log(game)
 ```
 
 ### Python
 
 ```python
 client = FreeToPlayGamesSDK.test()
-result = client.game.load({"id": "test01"})
+game = client.Game().load({"id": "test01"})
+print(game)
 ```
 
 ### PHP
 
 ```php
-$client = FreeToPlayGamesSDK::test();
-$result = $client->game()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = FreeToPlayGamesSDK::test([
+    "entity" => ["game" => ["test01" => ["id" => "test01"]]],
+]);
+$game = $client->Game()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -176,15 +184,18 @@ result, err := client.Game(nil).Load(
 ### Ruby
 
 ```ruby
-client = FreeToPlayGamesSDK.test
-result = client.game.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = FreeToPlayGamesSDK.test({
+  "entity" => { "game" => { "test01" => { "id" => "test01" } } },
+})
+game = client.Game.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:game():load({ id = "test01" })
+local result, err = client:Game():load({ id = "test01" })
 ```
 
 ## How it works
@@ -232,6 +243,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

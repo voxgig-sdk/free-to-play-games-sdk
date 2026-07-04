@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:game():list() / client:game():load({ id = ... })
-function FreeToPlayGamesSDK:game(data)
+-- Idiomatic facade: client:Game():list() / client:Game():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function FreeToPlayGamesSDK:Game(data)
   local EntityMod = require("entity.game_entity")
   if data == nil then
     if self._game == nil then
@@ -253,12 +254,6 @@ function FreeToPlayGamesSDK:game(data)
     end
     return self._game
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:game() instead.
-function FreeToPlayGamesSDK:Game(data)
-  local EntityMod = require("entity.game_entity")
   return EntityMod.new(self, data)
 end
 

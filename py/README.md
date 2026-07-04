@@ -31,14 +31,16 @@ from freetoplaygames_sdk import FreeToPlayGamesSDK
 client = FreeToPlayGamesSDK()
 ```
 
-### 2. List games
+### 2. List game records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.game.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    games = client.Game().list({})
+    for game in games:
+        print(game)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FreeToPlayGamesSDK.test()
 
-result = client.game.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+game = client.Game().load({"id": "test01"})
+# game contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -234,7 +237,7 @@ API path: `/games`
 
 ### Game
 
-Create an instance: `const game = client.game`
+Create an instance: `game = client.Game()`
 
 #### Operations
 
@@ -264,8 +267,8 @@ Create an instance: `const game = client.game`
 
 #### Example: List
 
-```ts
-const games = await client.game.list()
+```python
+games = client.Game().list({})
 ```
 
 
@@ -339,7 +342,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-game = client.game
+game = client.Game()
 game.load({"id": "example_id"})
 
 # game.data_get() now returns the loaded game data

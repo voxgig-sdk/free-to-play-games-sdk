@@ -208,13 +208,7 @@ class FreeToPlayGamesSDK
   end
 
 
-  # Idiomatic facade: client.game.list / client.game.load({ "id" => ... })
-  def game
-    require_relative 'entity/game_entity'
-    @game ||= GameEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.game instead.
+  # Canonical facade: client.Game.list / client.Game.load({ "id" => ... })
   def Game(data = nil)
     require_relative 'entity/game_entity'
     GameEntity.new(self, data)

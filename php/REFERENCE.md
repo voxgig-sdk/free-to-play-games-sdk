@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## GameEntity
 
 ```php
-$game = $client->game();
+$game = $client->Game();
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ $game = $client->game();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->game()->list([]);
+$results = $client->Game()->list([]);
 ```
 
 ### Common Methods
