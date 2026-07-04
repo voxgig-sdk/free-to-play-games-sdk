@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Game,
+  GameListMatch,
+} from '../FreeToPlayGamesTypes'
 
 // TODO: needs Entity superclass
-class GameEntity extends FreeToPlayGamesEntityBase {
+class GameEntity extends FreeToPlayGamesEntityBase<Game> {
 
   constructor(client: FreeToPlayGamesSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class GameEntity extends FreeToPlayGamesEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: GameListMatch, ctrl?: Control): Promise<Game[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class GameEntity extends FreeToPlayGamesEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Game[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

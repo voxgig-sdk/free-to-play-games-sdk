@@ -9,9 +9,12 @@ The TypeScript SDK for the FreeToPlayGames API — a type-safe, entity-oriented 
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/free-to-play-games
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/free-to-play-games-sdk/releases](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { FreeToPlayGamesSDK } from 'free-to-play-games'
+import { FreeToPlayGamesSDK } from '@voxgig-sdk/free-to-play-games'
 
-const client = new FreeToPlayGamesSDK({
-  apikey: process.env.FREE-TO-PLAY-GAMES_APIKEY,
-})
+const client = new FreeToPlayGamesSDK()
 ```
 
 ### 2. List games
 
 ```ts
-const result = await client.Game().list()
+const result = await client.game.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = FreeToPlayGamesSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.game.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new FreeToPlayGamesSDK({ apikey: '...' })
+const client = new FreeToPlayGamesSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.game
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new FreeToPlayGamesSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new FreeToPlayGamesSDK({
 Create a `.env.local` file at the project root:
 
 ```
-FREE-TO-PLAY-GAMES_TEST_LIVE=TRUE
-FREE-TO-PLAY-GAMES_APIKEY=<your-key>
+FREE_TO_PLAY_GAMES_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new FreeToPlayGamesSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new FreeToPlayGamesSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -282,7 +279,7 @@ API path: `/games`
 
 ### Game
 
-Create an instance: `const game = client.Game()`
+Create an instance: `const game = client.game`
 
 #### Operations
 
@@ -313,7 +310,7 @@ Create an instance: `const game = client.Game()`
 #### Example: List
 
 ```ts
-const games = await client.Game().list()
+const games = await client.game.list()
 ```
 
 
@@ -374,7 +371,7 @@ free-to-play-games/
 Import the SDK from the package root:
 
 ```ts
-import { FreeToPlayGamesSDK } from 'free-to-play-games'
+import { FreeToPlayGamesSDK } from '@voxgig-sdk/free-to-play-games'
 ```
 
 ### Entity state
@@ -384,11 +381,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const game = client.game
+await game.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// game.data() now returns the loaded game data
+// game.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

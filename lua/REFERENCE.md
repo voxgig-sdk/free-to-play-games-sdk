@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -84,7 +83,7 @@ same parameters as `direct()`.
 ## GameEntity
 
 ```lua
-local game = client:Game(nil)
+local game = client:game(nil)
 ```
 
 ### Fields
@@ -114,7 +113,7 @@ local game = client:Game(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Game():list()
+local results, err = client:game():list()
 ```
 
 ### Common Methods

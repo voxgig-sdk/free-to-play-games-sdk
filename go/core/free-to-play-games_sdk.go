@@ -245,6 +245,9 @@ func (sdk *FreeToPlayGamesSDK) Direct(fetchargs map[string]any) (map[string]any,
 }
 
 
+// Game returns a Game entity bound to this client.
+// Idiomatic usage: client.Game(nil).List(nil, nil) or
+// client.Game(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *FreeToPlayGamesSDK) Game(data map[string]any) FreeToPlayGamesEntity {
 	return NewGameEntityFunc(sdk, data)
 }

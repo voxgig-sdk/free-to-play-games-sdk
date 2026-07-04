@@ -2,6 +2,8 @@
 
 import { GameEntity } from './entity/GameEntity'
 
+export type * from './FreeToPlayGamesTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class FreeToPlayGamesSDK {
 
 
 
+  _game?: GameEntity
+
+  // Idiomatic facade: `client.game.list()` / `client.game.load({ id })`.
+  get game(): GameEntity {
+    return (this._game ??= new GameEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.game` instead. */
   Game(data?: any) {
     const self = this
     return new GameEntity(self,data)

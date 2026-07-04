@@ -50,8 +50,7 @@ class TestGameEntity:
         game_ref01_ent = client.Game(None)
         game_ref01_match = {}
 
-        game_ref01_list_result, err = game_ref01_ent.list(game_ref01_match, None)
-        assert err is None
+        game_ref01_list_result = game_ref01_ent.list(game_ref01_match, None)
         assert isinstance(game_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _game_basic_setup(extra):
         "FREETOPLAYGAMES_TEST_GAME_ENTID": idmap,
         "FREETOPLAYGAMES_TEST_LIVE": "FALSE",
         "FREETOPLAYGAMES_TEST_EXPLAIN": "FALSE",
-        "FREETOPLAYGAMES_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _game_basic_setup(extra):
     if env.get("FREETOPLAYGAMES_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("FREETOPLAYGAMES_APIKEY"),
             },
             extra or {},
         ])

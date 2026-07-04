@@ -4,6 +4,7 @@
 main: {
   kit: {
     info: {
+      auth: false
       contact: {
         name: "API Documentation"
         url: "https://www.freetogame.com/api-doc"
