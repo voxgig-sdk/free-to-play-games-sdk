@@ -8,7 +8,7 @@ Complete API reference for the FreeToPlayGames Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'free-to-play-games_sdk'
+require_relative 'FreeToPlayGames_sdk'
 
 client = FreeToPlayGamesSDK.new(options)
 ```
@@ -93,30 +93,30 @@ game = client.Game
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `freetogame_profile_url` | ``$STRING`` | No |  |
-| `game_url` | ``$STRING`` | No |  |
-| `genre` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `minimum_system_requirement` | ``$OBJECT`` | No |  |
-| `platform` | ``$STRING`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `short_description` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `thumbnail` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `String` | No |  |
+| `developer` | `String` | No |  |
+| `freetogame_profile_url` | `String` | No |  |
+| `game_url` | `String` | No |  |
+| `genre` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `minimum_system_requirement` | `Hash` | No |  |
+| `platform` | `String` | No |  |
+| `publisher` | `String` | No |  |
+| `release_date` | `String` | No |  |
+| `screenshot` | `Array` | No |  |
+| `short_description` | `String` | No |  |
+| `status` | `String` | No |  |
+| `thumbnail` | `String` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Game.list(nil)
+results = client.Game.list
 ```
 
 ### Common Methods

@@ -17,8 +17,6 @@ go build -o free-to-play-games-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./free-to-play-games-cli list game
-./free-to-play-games-cli load 1 game
-./free-to-play-games-cli load '{id:1}' game
 
 # REPL
 ./free-to-play-games-cli
@@ -29,8 +27,6 @@ go build -o free-to-play-games-cli ./...
 | Word     | Signatures                                   | Description                |
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
-| `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

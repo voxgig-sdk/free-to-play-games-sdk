@@ -23,5 +23,21 @@ export interface Game {
   title?: string
 }
 
-export type GameListMatch = Partial<Game>
+export interface GameListMatch {
+  description?: string
+  developer?: string
+  freetogame_profile_url?: string
+  game_url?: string
+  genre?: string
+  id?: number
+  minimum_system_requirement?: Record<string, any>
+  platform?: string
+  publisher?: string
+  release_date?: string
+  screenshot?: any[]
+  short_description?: string
+  status?: string
+  thumbnail?: string
+  title?: string
+}
 

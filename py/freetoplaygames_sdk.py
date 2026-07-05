@@ -221,7 +221,7 @@ class FreeToPlayGamesSDK:
 
 
     def Game(self, data=None) -> "GameEntity":
-        """Entity factory: client.Game().list({}) / client.Game().load({"id": ...})."""
+        """Entity factory: client.Game().list() / client.Game().load({"id": ...})."""
         from entity.game_entity import GameEntity
         return GameEntity(self, data)
 

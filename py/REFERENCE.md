@@ -8,7 +8,7 @@ Complete API reference for the FreeToPlayGames Python SDK.
 ### Constructor
 
 ```python
-from free-to-play-games_sdk import FreeToPlayGamesSDK
+from freetoplaygames_sdk import FreeToPlayGamesSDK
 
 client = FreeToPlayGamesSDK(options)
 ```
@@ -87,30 +87,30 @@ game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `freetogame_profile_url` | ``$STRING`` | No |  |
-| `game_url` | ``$STRING`` | No |  |
-| `genre` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `minimum_system_requirement` | ``$OBJECT`` | No |  |
-| `platform` | ``$STRING`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `short_description` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `thumbnail` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `str` | No |  |
+| `developer` | `str` | No |  |
+| `freetogame_profile_url` | `str` | No |  |
+| `game_url` | `str` | No |  |
+| `genre` | `str` | No |  |
+| `id` | `int` | No |  |
+| `minimum_system_requirement` | `dict` | No |  |
+| `platform` | `str` | No |  |
+| `publisher` | `str` | No |  |
+| `release_date` | `str` | No |  |
+| `screenshot` | `list` | No |  |
+| `short_description` | `str` | No |  |
+| `status` | `str` | No |  |
+| `thumbnail` | `str` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Game().list({})
+results = client.Game().list()
 for game in results:
     print(game)
 ```

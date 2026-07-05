@@ -90,21 +90,21 @@ local game = client:Game(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `developer` | ``$STRING`` | No |  |
-| `freetogame_profile_url` | ``$STRING`` | No |  |
-| `game_url` | ``$STRING`` | No |  |
-| `genre` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `minimum_system_requirement` | ``$OBJECT`` | No |  |
-| `platform` | ``$STRING`` | No |  |
-| `publisher` | ``$STRING`` | No |  |
-| `release_date` | ``$STRING`` | No |  |
-| `screenshot` | ``$ARRAY`` | No |  |
-| `short_description` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `thumbnail` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `developer` | `string` | No |  |
+| `freetogame_profile_url` | `string` | No |  |
+| `game_url` | `string` | No |  |
+| `genre` | `string` | No |  |
+| `id` | `number` | No |  |
+| `minimum_system_requirement` | `table` | No |  |
+| `platform` | `string` | No |  |
+| `publisher` | `string` | No |  |
+| `release_date` | `string` | No |  |
+| `screenshot` | `table` | No |  |
+| `short_description` | `string` | No |  |
+| `status` | `string` | No |  |
+| `thumbnail` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
