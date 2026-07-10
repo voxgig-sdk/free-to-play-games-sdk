@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -342,14 +339,17 @@
           "url": "https://www.freetogame.com/api-doc"
         },
         "description": "The Free-To-Play Games Database API offers programmatic access to a comprehensive collection of the best free games available. Users can retrieve detailed information about various games, including genres, developers, and release dates, without any restrictions or authentication required.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://www.freetogame.com/api"
           }
         ],
+        "summary": "The Free-To-Play Games Database API offers programmatic access to a comprehensive collection of the best free games available.",
         "title": "Free-To-Play Games",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://freetogame.com"
       },
       "option": {},
       "target": {
@@ -402,6 +402,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -452,6 +455,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

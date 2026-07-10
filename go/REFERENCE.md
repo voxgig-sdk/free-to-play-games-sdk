@@ -91,6 +91,7 @@ same parameters as `Direct()`.
 
 ```go
 game := client.Game(nil)
+fmt.Println(game.GetName()) // "game"
 ```
 
 ### Fields
@@ -121,6 +122,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Game(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

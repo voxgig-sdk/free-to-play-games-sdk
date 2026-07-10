@@ -16,9 +16,9 @@ main: {
           url: "https://www.freetogame.com/api"
         }
       ]
+      summary: "The Free-To-Play Games Database API offers programmatic access to a comprehensive collection of the best free games available."
       title: "Free-To-Play Games"
       version: "1.0.0"
+      website: "https://freetogame.com"
     }
   }
-}
-
