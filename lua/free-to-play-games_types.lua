@@ -13,11 +13,11 @@
 ---@field game_url? string
 ---@field genre? string
 ---@field id? number
----@field minimum_system_requirement? table
+---@field minimum_system_requirements? table
 ---@field platform? string
 ---@field publisher? string
 ---@field release_date? string
----@field screenshot? table
+---@field screenshots? table
 ---@field short_description? string
 ---@field status? string
 ---@field thumbnail? string
@@ -30,11 +30,11 @@
 ---@field game_url? string
 ---@field genre? string
 ---@field id? number
----@field minimum_system_requirement? table
+---@field minimum_system_requirements? table
 ---@field platform? string
 ---@field publisher? string
 ---@field release_date? string
----@field screenshot? table
+---@field screenshots? table
 ---@field short_description? string
 ---@field status? string
 ---@field thumbnail? string

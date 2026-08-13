@@ -26,8 +26,8 @@ import {
 describe('GameEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when FREETOPLAYGAMES_TEST_LIVE=TRUE.
-  afterEach(liveDelay('FREETOPLAYGAMES_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when FREE_TO_PLAY_GAMES_TEST_LIVE=TRUE.
+  afterEach(liveDelay('FREE_TO_PLAY_GAMES_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = FreeToPlayGamesSDK.test()
@@ -63,7 +63,7 @@ describe('GameEntity', async () => {
     const game_ref01_ent = client.Game()
     const game_ref01_match: any = {}
 
-    const game_ref01_list = await game_ref01_ent.list(game_ref01_match)
+    const game_ref01_list = (await game_ref01_ent.list(game_ref01_match)).map((e: any) => e.data())
 
 
   })

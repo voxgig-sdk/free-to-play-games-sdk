@@ -61,11 +61,11 @@ function game_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["FREETOPLAYGAMES_TEST_GAME_ENTID"] = {},
-    ["FREETOPLAYGAMES_TEST_LIVE"] = "FALSE",
+    ["FREE_TO_PLAY_GAMES_TEST_GAME_ENTID"] = {},
+    ["FREE_TO_PLAY_GAMES_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["FREETOPLAYGAMES_TEST_LIVE"] == "TRUE"
+  local live = env["FREE_TO_PLAY_GAMES_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

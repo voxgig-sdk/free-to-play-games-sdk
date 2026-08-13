@@ -99,11 +99,11 @@ game = client.Game
 | `game_url` | `String` | No |  |
 | `genre` | `String` | No |  |
 | `id` | `Integer` | No |  |
-| `minimum_system_requirement` | `Hash` | No |  |
+| `minimum_system_requirements` | `Hash` | No |  |
 | `platform` | `String` | No |  |
 | `publisher` | `String` | No |  |
 | `release_date` | `String` | No |  |
-| `screenshot` | `Array` | No |  |
+| `screenshots` | `Array` | No |  |
 | `short_description` | `String` | No |  |
 | `status` | `String` | No |  |
 | `thumbnail` | `String` | No |  |

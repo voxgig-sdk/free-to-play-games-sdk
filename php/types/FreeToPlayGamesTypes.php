@@ -21,11 +21,11 @@ class Game
     public ?string $game_url = null;
     public ?string $genre = null;
     public ?int $id = null;
-    public ?array $minimum_system_requirement = null;
+    public ?array $minimum_system_requirements = null;
     public ?string $platform = null;
     public ?string $publisher = null;
     public ?string $release_date = null;
-    public ?array $screenshot = null;
+    public ?array $screenshots = null;
     public ?string $short_description = null;
     public ?string $status = null;
     public ?string $thumbnail = null;
@@ -41,11 +41,11 @@ class GameListMatch
     public ?string $game_url = null;
     public ?string $genre = null;
     public ?int $id = null;
-    public ?array $minimum_system_requirement = null;
+    public ?array $minimum_system_requirements = null;
     public ?string $platform = null;
     public ?string $publisher = null;
     public ?string $release_date = null;
-    public ?array $screenshot = null;
+    public ?array $screenshots = null;
     public ?string $short_description = null;
     public ?string $status = null;
     public ?string $thumbnail = null;

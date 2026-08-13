@@ -28,7 +28,7 @@
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] minimum_system_requirement
+# @!attribute [rw] minimum_system_requirements
 #   @return [Hash, nil]
 #
 # @!attribute [rw] platform
@@ -40,7 +40,7 @@
 # @!attribute [rw] release_date
 #   @return [String, nil]
 #
-# @!attribute [rw] screenshot
+# @!attribute [rw] screenshots
 #   @return [Array, nil]
 #
 # @!attribute [rw] short_description
@@ -61,11 +61,11 @@ Game = Struct.new(
   :game_url,
   :genre,
   :id,
-  :minimum_system_requirement,
+  :minimum_system_requirements,
   :platform,
   :publisher,
   :release_date,
-  :screenshot,
+  :screenshots,
   :short_description,
   :status,
   :thumbnail,
@@ -93,7 +93,7 @@ Game = Struct.new(
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] minimum_system_requirement
+# @!attribute [rw] minimum_system_requirements
 #   @return [Hash, nil]
 #
 # @!attribute [rw] platform
@@ -105,7 +105,7 @@ Game = Struct.new(
 # @!attribute [rw] release_date
 #   @return [String, nil]
 #
-# @!attribute [rw] screenshot
+# @!attribute [rw] screenshots
 #   @return [Array, nil]
 #
 # @!attribute [rw] short_description
@@ -126,11 +126,11 @@ GameListMatch = Struct.new(
   :game_url,
   :genre,
   :id,
-  :minimum_system_requirement,
+  :minimum_system_requirements,
   :platform,
   :publisher,
   :release_date,
-  :screenshot,
+  :screenshots,
   :short_description,
   :status,
   :thumbnail,

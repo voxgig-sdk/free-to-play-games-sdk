@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import FreeToPlayGamesSDK
-from core.error import FreeToPlayGamesError
-from core.result import FreeToPlayGamesResult
-from core.response import FreeToPlayGamesResponse
-from core.spec import FreeToPlayGamesSpec
-from feature.base_feature import FreeToPlayGamesBaseFeature
+from projectname_sdk.core.error import FreeToPlayGamesError
+from projectname_sdk.core.result import FreeToPlayGamesResult
+from projectname_sdk.core.response import FreeToPlayGamesResponse
+from projectname_sdk.core.spec import FreeToPlayGamesSpec
+from projectname_sdk.feature.base_feature import FreeToPlayGamesBaseFeature
 
 
 def _client():

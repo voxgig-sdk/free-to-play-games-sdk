@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = FreeToPlayGamesSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $game = $client->Game()->list();
 print_r($game);
 ```
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -252,11 +253,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 | `game_url` |  |
 | `genre` |  |
 | `id` |  |
-| `minimum_system_requirement` |  |
+| `minimum_system_requirements` |  |
 | `platform` |  |
 | `publisher` |  |
 | `release_date` |  |
-| `screenshot` |  |
+| `screenshots` |  |
 | `short_description` |  |
 | `status` |  |
 | `thumbnail` |  |
@@ -291,11 +292,11 @@ Create an instance: `$game = $client->Game();`
 | `game_url` | `string` |  |
 | `genre` | `string` |  |
 | `id` | `int` |  |
-| `minimum_system_requirement` | `array` |  |
+| `minimum_system_requirements` | `array` |  |
 | `platform` | `string` |  |
 | `publisher` | `string` |  |
 | `release_date` | `string` |  |
-| `screenshot` | `array` |  |
+| `screenshots` | `array` |  |
 | `short_description` | `string` |  |
 | `status` | `string` |  |
 | `thumbnail` | `string` |  |

@@ -93,11 +93,11 @@ game = client.Game()
 | `game_url` | `str` | No |  |
 | `genre` | `str` | No |  |
 | `id` | `int` | No |  |
-| `minimum_system_requirement` | `dict` | No |  |
+| `minimum_system_requirements` | `dict` | No |  |
 | `platform` | `str` | No |  |
 | `publisher` | `str` | No |  |
 | `release_date` | `str` | No |  |
-| `screenshot` | `list` | No |  |
+| `screenshots` | `list` | No |  |
 | `short_description` | `str` | No |  |
 | `status` | `str` | No |  |
 | `thumbnail` | `str` | No |  |

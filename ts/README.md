@@ -35,7 +35,9 @@ const client = new FreeToPlayGamesSDK()
 
 ### 2. List game records
 
-`list()` resolves to an array of Game objects — iterate it directly:
+`list()` resolves to an array of Game ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const games = await client.Game().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = FreeToPlayGamesSDK.test()
 
 const game = await client.Game().list()
-// game is a bare entity populated with mock response data
+// game is the entity, populated with mock response data
+// — call game.data() for the record itself
 console.log(game)
 ```
 
@@ -290,11 +293,11 @@ The `prepare()` method returns:
 | `game_url` |  |
 | `genre` |  |
 | `id` |  |
-| `minimum_system_requirement` |  |
+| `minimum_system_requirements` |  |
 | `platform` |  |
 | `publisher` |  |
 | `release_date` |  |
-| `screenshot` |  |
+| `screenshots` |  |
 | `short_description` |  |
 | `status` |  |
 | `thumbnail` |  |
@@ -329,11 +332,11 @@ Create an instance: `const game = client.Game()`
 | `game_url` | `string` |  |
 | `genre` | `string` |  |
 | `id` | `number` |  |
-| `minimum_system_requirement` | `Record<string, any>` |  |
+| `minimum_system_requirements` | `Record<string, any>` |  |
 | `platform` | `string` |  |
 | `publisher` | `string` |  |
 | `release_date` | `string` |  |
-| `screenshot` | `any[]` |  |
+| `screenshots` | `any[]` |  |
 | `short_description` | `string` |  |
 | `status` | `string` |  |
 | `thumbnail` | `string` |  |

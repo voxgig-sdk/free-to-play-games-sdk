@@ -124,7 +124,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = FreeToPlayGamesSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 game = client.Game().list()
 # game contains the mock response record
 ```
@@ -220,7 +221,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -248,11 +249,11 @@ On error, `ok` is `False` and `err` contains the error value.
 | `game_url` |  |
 | `genre` |  |
 | `id` |  |
-| `minimum_system_requirement` |  |
+| `minimum_system_requirements` |  |
 | `platform` |  |
 | `publisher` |  |
 | `release_date` |  |
-| `screenshot` |  |
+| `screenshots` |  |
 | `short_description` |  |
 | `status` |  |
 | `thumbnail` |  |
@@ -287,11 +288,11 @@ Create an instance: `game = client.Game()`
 | `game_url` | `str` |  |
 | `genre` | `str` |  |
 | `id` | `int` |  |
-| `minimum_system_requirement` | `dict` |  |
+| `minimum_system_requirements` | `dict` |  |
 | `platform` | `str` |  |
 | `publisher` | `str` |  |
 | `release_date` | `str` |  |
-| `screenshot` | `list` |  |
+| `screenshots` | `list` |  |
 | `short_description` | `str` |  |
 | `status` | `str` |  |
 | `thumbnail` | `str` |  |

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# FreeToPlayGames SDK exists test
 
 import pytest
 from freetoplaygames_sdk import FreeToPlayGamesSDK

@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FreeToPlayGamesSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 game = client.Game.list()
 puts game
 ```
@@ -242,11 +243,11 @@ returns a result `Hash` with these keys:
 | `game_url` |  |
 | `genre` |  |
 | `id` |  |
-| `minimum_system_requirement` |  |
+| `minimum_system_requirements` |  |
 | `platform` |  |
 | `publisher` |  |
 | `release_date` |  |
-| `screenshot` |  |
+| `screenshots` |  |
 | `short_description` |  |
 | `status` |  |
 | `thumbnail` |  |
@@ -281,11 +282,11 @@ Create an instance: `game = client.Game`
 | `game_url` | `String` |  |
 | `genre` | `String` |  |
 | `id` | `Integer` |  |
-| `minimum_system_requirement` | `Hash` |  |
+| `minimum_system_requirements` | `Hash` |  |
 | `platform` | `String` |  |
 | `publisher` | `String` |  |
 | `release_date` | `String` |  |
-| `screenshot` | `Array` |  |
+| `screenshots` | `Array` |  |
 | `short_description` | `String` |  |
 | `status` | `String` |  |
 | `thumbnail` | `String` |  |

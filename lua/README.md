@@ -218,9 +218,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local game, err = client:Game():load()
+    local game, err = client:Game():list()
     if err then error(err) end
-    -- game is the loaded record
+    -- game is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -237,11 +237,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | `game_url` |  |
 | `genre` |  |
 | `id` |  |
-| `minimum_system_requirement` |  |
+| `minimum_system_requirements` |  |
 | `platform` |  |
 | `publisher` |  |
 | `release_date` |  |
-| `screenshot` |  |
+| `screenshots` |  |
 | `short_description` |  |
 | `status` |  |
 | `thumbnail` |  |
@@ -276,11 +276,11 @@ Create an instance: `local game = client:Game(nil)`
 | `game_url` | `string` |  |
 | `genre` | `string` |  |
 | `id` | `number` |  |
-| `minimum_system_requirement` | `table` |  |
+| `minimum_system_requirements` | `table` |  |
 | `platform` | `string` |  |
 | `publisher` | `string` |  |
 | `release_date` | `string` |  |
-| `screenshot` | `table` |  |
+| `screenshots` | `table` |  |
 | `short_description` | `string` |  |
 | `status` | `string` |  |
 | `thumbnail` | `string` |  |

@@ -69,7 +69,7 @@ module FreeToPlayGamesConfig
             },
             {
               "active" => true,
-              "name" => "minimum_system_requirement",
+              "name" => "minimum_system_requirements",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 6,
@@ -97,7 +97,7 @@ module FreeToPlayGamesConfig
             },
             {
               "active" => true,
-              "name" => "screenshot",
+              "name" => "screenshots",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 10,
@@ -168,6 +168,7 @@ module FreeToPlayGamesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/games",
                   "parts" => [
@@ -200,6 +201,7 @@ module FreeToPlayGamesConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/game",
                   "parts" => [

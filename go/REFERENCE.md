@@ -104,11 +104,11 @@ fmt.Println(game.GetName()) // "game"
 | `game_url` | `string` | No |  |
 | `genre` | `string` | No |  |
 | `id` | `int` | No |  |
-| `minimum_system_requirement` | `map[string]any` | No |  |
+| `minimum_system_requirements` | `map[string]any` | No |  |
 | `platform` | `string` | No |  |
 | `publisher` | `string` | No |  |
 | `release_date` | `string` | No |  |
-| `screenshot` | `[]any` | No |  |
+| `screenshots` | `[]any` | No |  |
 | `short_description` | `string` | No |  |
 | `status` | `string` | No |  |
 | `thumbnail` | `string` | No |  |

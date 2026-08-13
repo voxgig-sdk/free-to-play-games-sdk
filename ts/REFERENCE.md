@@ -122,11 +122,11 @@ const game = client.Game()
 | `game_url` | `string` | No |  |
 | `genre` | `string` | No |  |
 | `id` | `number` | No |  |
-| `minimum_system_requirement` | `Record<string, any>` | No |  |
+| `minimum_system_requirements` | `Record<string, any>` | No |  |
 | `platform` | `string` | No |  |
 | `publisher` | `string` | No |  |
 | `release_date` | `string` | No |  |
-| `screenshot` | `any[]` | No |  |
+| `screenshots` | `any[]` | No |  |
 | `short_description` | `string` | No |  |
 | `status` | `string` | No |  |
 | `thumbnail` | `string` | No |  |

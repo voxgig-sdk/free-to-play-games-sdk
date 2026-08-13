@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from freetoplaygames_sdk.utility.voxgig_struct import voxgig_struct as vs
 from freetoplaygames_sdk import FreeToPlayGamesSDK
-from core import helpers
+from freetoplaygames_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _game_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "FREETOPLAYGAMES_TEST_GAME_ENTID": {},
-        "FREETOPLAYGAMES_TEST_LIVE": "FALSE",
+        "FREE_TO_PLAY_GAMES_TEST_GAME_ENTID": {},
+        "FREE_TO_PLAY_GAMES_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("FREETOPLAYGAMES_TEST_LIVE") == "TRUE"
+    live = env.get("FREE_TO_PLAY_GAMES_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

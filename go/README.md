@@ -266,11 +266,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | `"game_url"` |  |
 | `"genre"` |  |
 | `"id"` |  |
-| `"minimum_system_requirement"` |  |
+| `"minimum_system_requirements"` |  |
 | `"platform"` |  |
 | `"publisher"` |  |
 | `"release_date"` |  |
-| `"screenshot"` |  |
+| `"screenshots"` |  |
 | `"short_description"` |  |
 | `"status"` |  |
 | `"thumbnail"` |  |
@@ -305,11 +305,11 @@ Create an instance: `game := client.Game(nil)`
 | `game_url` | `string` |  |
 | `genre` | `string` |  |
 | `id` | `int` |  |
-| `minimum_system_requirement` | `map[string]any` |  |
+| `minimum_system_requirements` | `map[string]any` |  |
 | `platform` | `string` |  |
 | `publisher` | `string` |  |
 | `release_date` | `string` |  |
-| `screenshot` | `[]any` |  |
+| `screenshots` | `[]any` |  |
 | `short_description` | `string` |  |
 | `status` | `string` |  |
 | `thumbnail` | `string` |  |

@@ -36,7 +36,7 @@ main: kit: entity: game: {
       type: "`$INTEGER`"
     }
     {
-      name: "minimum_system_requirement"
+      name: "minimum_system_requirements"
       req: false
       type: "`$OBJECT`"
     }
@@ -56,7 +56,7 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
-      name: "screenshot"
+      name: "screenshots"
       req: false
       type: "`$ARRAY`"
     }

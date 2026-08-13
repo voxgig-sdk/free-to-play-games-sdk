@@ -98,11 +98,11 @@ $game = $client->Game();
 | `game_url` | `string` | No |  |
 | `genre` | `string` | No |  |
 | `id` | `int` | No |  |
-| `minimum_system_requirement` | `array` | No |  |
+| `minimum_system_requirements` | `array` | No |  |
 | `platform` | `string` | No |  |
 | `publisher` | `string` | No |  |
 | `release_date` | `string` | No |  |
-| `screenshot` | `array` | No |  |
+| `screenshots` | `array` | No |  |
 | `short_description` | `string` | No |  |
 | `status` | `string` | No |  |
 | `thumbnail` | `string` | No |  |

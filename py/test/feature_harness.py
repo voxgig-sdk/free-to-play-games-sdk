@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import FreeToPlayGamesControl
-from core.error import FreeToPlayGamesError
-from core.result import FreeToPlayGamesResult
-from core.spec import FreeToPlayGamesSpec
+from freetoplaygames_sdk.config import make_config
+from freetoplaygames_sdk.features import _make_feature
+from freetoplaygames_sdk.core.control import FreeToPlayGamesControl
+from freetoplaygames_sdk.core.error import FreeToPlayGamesError
+from freetoplaygames_sdk.core.result import FreeToPlayGamesResult
+from freetoplaygames_sdk.core.spec import FreeToPlayGamesSpec
 
 
 # True when this SDK was generated with the named feature.

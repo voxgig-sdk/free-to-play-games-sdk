@@ -12,11 +12,11 @@ export interface Game {
   game_url?: string
   genre?: string
   id?: number
-  minimum_system_requirement?: Record<string, any>
+  minimum_system_requirements?: Record<string, any>
   platform?: string
   publisher?: string
   release_date?: string
-  screenshot?: any[]
+  screenshots?: any[]
   short_description?: string
   status?: string
   thumbnail?: string
@@ -30,11 +30,11 @@ export interface GameListMatch {
   game_url?: string
   genre?: string
   id?: number
-  minimum_system_requirement?: Record<string, any>
+  minimum_system_requirements?: Record<string, any>
   platform?: string
   publisher?: string
   release_date?: string
-  screenshot?: any[]
+  screenshots?: any[]
   short_description?: string
   status?: string
   thumbnail?: string
