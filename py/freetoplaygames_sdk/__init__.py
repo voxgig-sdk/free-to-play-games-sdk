@@ -23,8 +23,8 @@ class FreeToPlayGamesSDK:
         utility = FreeToPlayGamesUtility()
         self._utility = utility
 
-        from freetoplaygames_sdk.config import make_config
-        config = make_config()
+        from freetoplaygames_sdk.config import shared_config
+        config = shared_config()
 
         self._rootctx = utility.make_context({
             "client": self,

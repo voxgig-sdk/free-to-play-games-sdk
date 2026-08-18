@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from freetoplaygames_sdk.config import make_config
+from freetoplaygames_sdk.config import shared_config
 from freetoplaygames_sdk.features import _make_feature
 from freetoplaygames_sdk.core.control import FreeToPlayGamesControl
 from freetoplaygames_sdk.core.error import FreeToPlayGamesError
@@ -24,7 +24,7 @@ from freetoplaygames_sdk.core.spec import FreeToPlayGamesSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

@@ -15,7 +15,7 @@ require_relative "../FreeToPlayGames_sdk"
 module FreeToPlayGamesFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = FreeToPlayGamesConfig.make_config["feature"]
+    f = FreeToPlayGamesConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

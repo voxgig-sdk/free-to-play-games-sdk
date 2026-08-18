@@ -40,7 +40,7 @@ class FreeToPlayGamesSDK
         $utility = new FreeToPlayGamesUtility();
         $this->_utility = $utility;
 
-        $config = FreeToPlayGamesConfig::make_config();
+        $config = FreeToPlayGamesConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
