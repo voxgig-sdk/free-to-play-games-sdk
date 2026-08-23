@@ -87,21 +87,21 @@ game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `developer` | `str` | No |  |
-| `freetogame_profile_url` | `str` | No |  |
-| `game_url` | `str` | No |  |
-| `genre` | `str` | No |  |
-| `id` | `int` | No |  |
-| `minimum_system_requirements` | `dict` | No |  |
-| `platform` | `str` | No |  |
-| `publisher` | `str` | No |  |
-| `release_date` | `str` | No |  |
-| `screenshots` | `list` | No |  |
-| `short_description` | `str` | No |  |
-| `status` | `str` | No |  |
-| `thumbnail` | `str` | No |  |
-| `title` | `str` | No |  |
+| `description` | `str` | No | Full description of the game |
+| `developer` | `str` | No | Developer of the game |
+| `freetogame_profile_url` | `str` | No | URL to the game's profile page on FreeToGame |
+| `game_url` | `str` | No | URL to play or download the game |
+| `genre` | `str` | No | Genre or category of the game |
+| `id` | `int` | No | Unique identifier for the game |
+| `minimum_system_requirements` | `dict` | No | Minimum system requirements for PC games |
+| `platform` | `str` | No | Platform(s) the game is available on |
+| `publisher` | `str` | No | Publisher of the game |
+| `release_date` | `str` | No | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | `list` | No | Array of screenshot images |
+| `short_description` | `str` | No | Brief description of the game |
+| `status` | `str` | No | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | `str` | No | URL to the game's thumbnail image |
+| `title` | `str` | No | Title of the game |
 
 ### Operations
 

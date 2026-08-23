@@ -8,76 +8,91 @@ main: kit: entity: game: {
     {
       name: "description"
       req: false
+      short: "Full description of the game"
       type: "`$STRING`"
     }
     {
       name: "developer"
       req: false
+      short: "Developer of the game"
       type: "`$STRING`"
     }
     {
       name: "freetogame_profile_url"
       req: false
+      short: "URL to the game's profile page on FreeToGame"
       type: "`$STRING`"
     }
     {
       name: "game_url"
       req: false
+      short: "URL to play or download the game"
       type: "`$STRING`"
     }
     {
       name: "genre"
       req: false
+      short: "Genre or category of the game"
       type: "`$STRING`"
     }
     {
       name: "id"
       req: false
+      short: "Unique identifier for the game"
       type: "`$INTEGER`"
     }
     {
       name: "minimum_system_requirements"
       req: false
+      short: "Minimum system requirements for PC games"
       type: "`$OBJECT`"
     }
     {
       name: "platform"
       req: false
+      short: "Platform(s) the game is available on"
       type: "`$STRING`"
     }
     {
       name: "publisher"
       req: false
+      short: "Publisher of the game"
       type: "`$STRING`"
     }
     {
       name: "release_date"
       req: false
+      short: "Release date of the game in YYYY-MM-DD format"
       type: "`$STRING`"
     }
     {
       name: "screenshots"
       req: false
+      short: "Array of screenshot images"
       type: "`$ARRAY`"
     }
     {
       name: "short_description"
       req: false
+      short: "Brief description of the game"
       type: "`$STRING`"
     }
     {
       name: "status"
       req: false
+      short: "Current status of the game (e.g., Live, Beta)"
       type: "`$STRING`"
     }
     {
       name: "thumbnail"
       req: false
+      short: "URL to the game's thumbnail image"
       type: "`$STRING`"
     }
     {
       name: "title"
       req: false
+      short: "Title of the game"
       type: "`$STRING`"
     }
   ]

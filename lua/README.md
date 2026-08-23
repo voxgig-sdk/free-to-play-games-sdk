@@ -231,21 +231,21 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `developer` |  |
-| `freetogame_profile_url` |  |
-| `game_url` |  |
-| `genre` |  |
-| `id` |  |
-| `minimum_system_requirements` |  |
-| `platform` |  |
-| `publisher` |  |
-| `release_date` |  |
-| `screenshots` |  |
-| `short_description` |  |
-| `status` |  |
-| `thumbnail` |  |
-| `title` |  |
+| `description` | Full description of the game |
+| `developer` | Developer of the game |
+| `freetogame_profile_url` | URL to the game's profile page on FreeToGame |
+| `game_url` | URL to play or download the game |
+| `genre` | Genre or category of the game |
+| `id` | Unique identifier for the game |
+| `minimum_system_requirements` | Minimum system requirements for PC games |
+| `platform` | Platform(s) the game is available on |
+| `publisher` | Publisher of the game |
+| `release_date` | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | Array of screenshot images |
+| `short_description` | Brief description of the game |
+| `status` | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | URL to the game's thumbnail image |
+| `title` | Title of the game |
 
 Operations: List.
 
@@ -270,21 +270,21 @@ Create an instance: `local game = client:Game(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `developer` | `string` |  |
-| `freetogame_profile_url` | `string` |  |
-| `game_url` | `string` |  |
-| `genre` | `string` |  |
-| `id` | `number` |  |
-| `minimum_system_requirements` | `table` |  |
-| `platform` | `string` |  |
-| `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshots` | `table` |  |
-| `short_description` | `string` |  |
-| `status` | `string` |  |
-| `thumbnail` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Full description of the game |
+| `developer` | `string` | Developer of the game |
+| `freetogame_profile_url` | `string` | URL to the game's profile page on FreeToGame |
+| `game_url` | `string` | URL to play or download the game |
+| `genre` | `string` | Genre or category of the game |
+| `id` | `number` | Unique identifier for the game |
+| `minimum_system_requirements` | `table` | Minimum system requirements for PC games |
+| `platform` | `string` | Platform(s) the game is available on |
+| `publisher` | `string` | Publisher of the game |
+| `release_date` | `string` | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | `table` | Array of screenshot images |
+| `short_description` | `string` | Brief description of the game |
+| `status` | `string` | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | `string` | URL to the game's thumbnail image |
+| `title` | `string` | Title of the game |
 
 #### Example: List
 

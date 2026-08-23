@@ -6,7 +6,7 @@ The Golang SDK for the FreeToPlayGames API — an entity-oriented client using s
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Game(nil)` — each with the same small set of operations (`List`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -260,21 +260,21 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"description"` |  |
-| `"developer"` |  |
-| `"freetogame_profile_url"` |  |
-| `"game_url"` |  |
-| `"genre"` |  |
-| `"id"` |  |
-| `"minimum_system_requirements"` |  |
-| `"platform"` |  |
-| `"publisher"` |  |
-| `"release_date"` |  |
-| `"screenshots"` |  |
-| `"short_description"` |  |
-| `"status"` |  |
-| `"thumbnail"` |  |
-| `"title"` |  |
+| `"description"` | Full description of the game |
+| `"developer"` | Developer of the game |
+| `"freetogame_profile_url"` | URL to the game's profile page on FreeToGame |
+| `"game_url"` | URL to play or download the game |
+| `"genre"` | Genre or category of the game |
+| `"id"` | Unique identifier for the game |
+| `"minimum_system_requirements"` | Minimum system requirements for PC games |
+| `"platform"` | Platform(s) the game is available on |
+| `"publisher"` | Publisher of the game |
+| `"release_date"` | Release date of the game in YYYY-MM-DD format |
+| `"screenshots"` | Array of screenshot images |
+| `"short_description"` | Brief description of the game |
+| `"status"` | Current status of the game (e.g., Live, Beta) |
+| `"thumbnail"` | URL to the game's thumbnail image |
+| `"title"` | Title of the game |
 
 Operations: List.
 
@@ -299,21 +299,21 @@ Create an instance: `game := client.Game(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `developer` | `string` |  |
-| `freetogame_profile_url` | `string` |  |
-| `game_url` | `string` |  |
-| `genre` | `string` |  |
-| `id` | `int` |  |
-| `minimum_system_requirements` | `map[string]any` |  |
-| `platform` | `string` |  |
-| `publisher` | `string` |  |
-| `release_date` | `string` |  |
-| `screenshots` | `[]any` |  |
-| `short_description` | `string` |  |
-| `status` | `string` |  |
-| `thumbnail` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Full description of the game |
+| `developer` | `string` | Developer of the game |
+| `freetogame_profile_url` | `string` | URL to the game's profile page on FreeToGame |
+| `game_url` | `string` | URL to play or download the game |
+| `genre` | `string` | Genre or category of the game |
+| `id` | `int` | Unique identifier for the game |
+| `minimum_system_requirements` | `map[string]any` | Minimum system requirements for PC games |
+| `platform` | `string` | Platform(s) the game is available on |
+| `publisher` | `string` | Publisher of the game |
+| `release_date` | `string` | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | `[]any` | Array of screenshot images |
+| `short_description` | `string` | Brief description of the game |
+| `status` | `string` | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | `string` | URL to the game's thumbnail image |
+| `title` | `string` | Title of the game |
 
 #### Example: List
 

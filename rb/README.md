@@ -237,21 +237,21 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `developer` |  |
-| `freetogame_profile_url` |  |
-| `game_url` |  |
-| `genre` |  |
-| `id` |  |
-| `minimum_system_requirements` |  |
-| `platform` |  |
-| `publisher` |  |
-| `release_date` |  |
-| `screenshots` |  |
-| `short_description` |  |
-| `status` |  |
-| `thumbnail` |  |
-| `title` |  |
+| `description` | Full description of the game |
+| `developer` | Developer of the game |
+| `freetogame_profile_url` | URL to the game's profile page on FreeToGame |
+| `game_url` | URL to play or download the game |
+| `genre` | Genre or category of the game |
+| `id` | Unique identifier for the game |
+| `minimum_system_requirements` | Minimum system requirements for PC games |
+| `platform` | Platform(s) the game is available on |
+| `publisher` | Publisher of the game |
+| `release_date` | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | Array of screenshot images |
+| `short_description` | Brief description of the game |
+| `status` | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | URL to the game's thumbnail image |
+| `title` | Title of the game |
 
 Operations: List.
 
@@ -276,21 +276,21 @@ Create an instance: `game = client.Game`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `developer` | `String` |  |
-| `freetogame_profile_url` | `String` |  |
-| `game_url` | `String` |  |
-| `genre` | `String` |  |
-| `id` | `Integer` |  |
-| `minimum_system_requirements` | `Hash` |  |
-| `platform` | `String` |  |
-| `publisher` | `String` |  |
-| `release_date` | `String` |  |
-| `screenshots` | `Array` |  |
-| `short_description` | `String` |  |
-| `status` | `String` |  |
-| `thumbnail` | `String` |  |
-| `title` | `String` |  |
+| `description` | `String` | Full description of the game |
+| `developer` | `String` | Developer of the game |
+| `freetogame_profile_url` | `String` | URL to the game's profile page on FreeToGame |
+| `game_url` | `String` | URL to play or download the game |
+| `genre` | `String` | Genre or category of the game |
+| `id` | `Integer` | Unique identifier for the game |
+| `minimum_system_requirements` | `Hash` | Minimum system requirements for PC games |
+| `platform` | `String` | Platform(s) the game is available on |
+| `publisher` | `String` | Publisher of the game |
+| `release_date` | `String` | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | `Array` | Array of screenshot images |
+| `short_description` | `String` | Brief description of the game |
+| `status` | `String` | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | `String` | URL to the game's thumbnail image |
+| `title` | `String` | Title of the game |
 
 #### Example: List
 

@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'FreeToPlayGames',
+        slug: "free-to-play-games",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -56,62 +67,77 @@ class Config {
       "fields": [
         {
           "name": "description",
+          "short": "Full description of the game",
           "type": "`$STRING`"
         },
         {
           "name": "developer",
+          "short": "Developer of the game",
           "type": "`$STRING`"
         },
         {
           "name": "freetogame_profile_url",
+          "short": "URL to the game's profile page on FreeToGame",
           "type": "`$STRING`"
         },
         {
           "name": "game_url",
+          "short": "URL to play or download the game",
           "type": "`$STRING`"
         },
         {
           "name": "genre",
+          "short": "Genre or category of the game",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the game",
           "type": "`$INTEGER`"
         },
         {
           "name": "minimum_system_requirements",
+          "short": "Minimum system requirements for PC games",
           "type": "`$OBJECT`"
         },
         {
           "name": "platform",
+          "short": "Platform(s) the game is available on",
           "type": "`$STRING`"
         },
         {
           "name": "publisher",
+          "short": "Publisher of the game",
           "type": "`$STRING`"
         },
         {
           "name": "release_date",
+          "short": "Release date of the game in YYYY-MM-DD format",
           "type": "`$STRING`"
         },
         {
           "name": "screenshots",
+          "short": "Array of screenshot images",
           "type": "`$ARRAY`"
         },
         {
           "name": "short_description",
+          "short": "Brief description of the game",
           "type": "`$STRING`"
         },
         {
           "name": "status",
+          "short": "Current status of the game (e.g., Live, Beta)",
           "type": "`$STRING`"
         },
         {
           "name": "thumbnail",
+          "short": "URL to the game's thumbnail image",
           "type": "`$STRING`"
         },
         {
           "name": "title",
+          "short": "Title of the game",
           "type": "`$STRING`"
         }
       ],

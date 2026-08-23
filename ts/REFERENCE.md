@@ -116,21 +116,21 @@ const game = client.Game()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `developer` | `string` | No |  |
-| `freetogame_profile_url` | `string` | No |  |
-| `game_url` | `string` | No |  |
-| `genre` | `string` | No |  |
-| `id` | `number` | No |  |
-| `minimum_system_requirements` | `Record<string, any>` | No |  |
-| `platform` | `string` | No |  |
-| `publisher` | `string` | No |  |
-| `release_date` | `string` | No |  |
-| `screenshots` | `any[]` | No |  |
-| `short_description` | `string` | No |  |
-| `status` | `string` | No |  |
-| `thumbnail` | `string` | No |  |
-| `title` | `string` | No |  |
+| `description` | `string` | No | Full description of the game |
+| `developer` | `string` | No | Developer of the game |
+| `freetogame_profile_url` | `string` | No | URL to the game's profile page on FreeToGame |
+| `game_url` | `string` | No | URL to play or download the game |
+| `genre` | `string` | No | Genre or category of the game |
+| `id` | `number` | No | Unique identifier for the game |
+| `minimum_system_requirements` | `Record<string, any>` | No | Minimum system requirements for PC games |
+| `platform` | `string` | No | Platform(s) the game is available on |
+| `publisher` | `string` | No | Publisher of the game |
+| `release_date` | `string` | No | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | `any[]` | No | Array of screenshot images |
+| `short_description` | `string` | No | Brief description of the game |
+| `status` | `string` | No | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | `string` | No | URL to the game's thumbnail image |
+| `title` | `string` | No | Title of the game |
 
 ### Operations
 

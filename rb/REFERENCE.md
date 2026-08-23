@@ -93,21 +93,21 @@ game = client.Game
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `developer` | `String` | No |  |
-| `freetogame_profile_url` | `String` | No |  |
-| `game_url` | `String` | No |  |
-| `genre` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `minimum_system_requirements` | `Hash` | No |  |
-| `platform` | `String` | No |  |
-| `publisher` | `String` | No |  |
-| `release_date` | `String` | No |  |
-| `screenshots` | `Array` | No |  |
-| `short_description` | `String` | No |  |
-| `status` | `String` | No |  |
-| `thumbnail` | `String` | No |  |
-| `title` | `String` | No |  |
+| `description` | `String` | No | Full description of the game |
+| `developer` | `String` | No | Developer of the game |
+| `freetogame_profile_url` | `String` | No | URL to the game's profile page on FreeToGame |
+| `game_url` | `String` | No | URL to play or download the game |
+| `genre` | `String` | No | Genre or category of the game |
+| `id` | `Integer` | No | Unique identifier for the game |
+| `minimum_system_requirements` | `Hash` | No | Minimum system requirements for PC games |
+| `platform` | `String` | No | Platform(s) the game is available on |
+| `publisher` | `String` | No | Publisher of the game |
+| `release_date` | `String` | No | Release date of the game in YYYY-MM-DD format |
+| `screenshots` | `Array` | No | Array of screenshot images |
+| `short_description` | `String` | No | Brief description of the game |
+| `status` | `String` | No | Current status of the game (e.g., Live, Beta) |
+| `thumbnail` | `String` | No | URL to the game's thumbnail image |
+| `title` | `String` | No | Title of the game |
 
 ### Operations
 
