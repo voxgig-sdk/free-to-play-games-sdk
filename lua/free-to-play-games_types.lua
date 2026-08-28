@@ -24,21 +24,9 @@
 ---@field title? string
 
 ---@class GameListMatch
----@field description? string
----@field developer? string
----@field freetogame_profile_url? string
----@field game_url? string
----@field genre? string
----@field id? number
----@field minimum_system_requirements? table
+---@field category? string
 ---@field platform? string
----@field publisher? string
----@field release_date? string
----@field screenshots? table
----@field short_description? string
----@field status? string
----@field thumbnail? string
----@field title? string
+---@field sort_by? string
 
 local M = {}
 

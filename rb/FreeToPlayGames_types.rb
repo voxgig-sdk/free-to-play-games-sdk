@@ -75,66 +75,18 @@ Game = Struct.new(
 
 # Request payload for Game#list.
 #
-# @!attribute [rw] description
+# @!attribute [rw] category
 #   @return [String, nil]
-#
-# @!attribute [rw] developer
-#   @return [String, nil]
-#
-# @!attribute [rw] freetogame_profile_url
-#   @return [String, nil]
-#
-# @!attribute [rw] game_url
-#   @return [String, nil]
-#
-# @!attribute [rw] genre
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] minimum_system_requirements
-#   @return [Hash, nil]
 #
 # @!attribute [rw] platform
 #   @return [String, nil]
 #
-# @!attribute [rw] publisher
-#   @return [String, nil]
-#
-# @!attribute [rw] release_date
-#   @return [String, nil]
-#
-# @!attribute [rw] screenshots
-#   @return [Array, nil]
-#
-# @!attribute [rw] short_description
-#   @return [String, nil]
-#
-# @!attribute [rw] status
-#   @return [String, nil]
-#
-# @!attribute [rw] thumbnail
-#   @return [String, nil]
-#
-# @!attribute [rw] title
+# @!attribute [rw] sort_by
 #   @return [String, nil]
 GameListMatch = Struct.new(
-  :description,
-  :developer,
-  :freetogame_profile_url,
-  :game_url,
-  :genre,
-  :id,
-  :minimum_system_requirements,
+  :category,
   :platform,
-  :publisher,
-  :release_date,
-  :screenshots,
-  :short_description,
-  :status,
-  :thumbnail,
-  :title,
+  :sort_by,
   keyword_init: true
 )
 

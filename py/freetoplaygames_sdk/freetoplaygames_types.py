@@ -35,18 +35,6 @@ class Game(TypedDict, total=False):
 
 
 class GameListMatch(TypedDict, total=False):
-    description: str
-    developer: str
-    freetogame_profile_url: str
-    game_url: str
-    genre: str
-    id: int
-    minimum_system_requirements: dict
+    category: str
     platform: str
-    publisher: str
-    release_date: str
-    screenshots: list
-    short_description: str
-    status: str
-    thumbnail: str
-    title: str
+    sort_by: str

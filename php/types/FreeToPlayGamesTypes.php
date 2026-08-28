@@ -35,20 +35,8 @@ class Game
 /** Request payload for Game#list. */
 class GameListMatch
 {
-    public ?string $description = null;
-    public ?string $developer = null;
-    public ?string $freetogame_profile_url = null;
-    public ?string $game_url = null;
-    public ?string $genre = null;
-    public ?int $id = null;
-    public ?array $minimum_system_requirements = null;
+    public ?string $category = null;
     public ?string $platform = null;
-    public ?string $publisher = null;
-    public ?string $release_date = null;
-    public ?array $screenshots = null;
-    public ?string $short_description = null;
-    public ?string $status = null;
-    public ?string $thumbnail = null;
-    public ?string $title = null;
+    public ?string $sort_by = null;
 }
 
