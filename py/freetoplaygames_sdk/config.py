@@ -1,6 +1,14 @@
 # FreeToPlayGames SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -63,11 +71,13 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "freetogame_profile_url",
             "short": "URL to the game's profile page on FreeToGame",
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "game_url",
             "short": "URL to play or download the game",
             "type": "`$STRING`",
@@ -98,6 +108,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "release_date",
             "short": "Release date of the game in YYYY-MM-DD format",
             "type": "`$STRING`",
@@ -118,6 +129,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "thumbnail",
             "short": "URL to the game's thumbnail image",
             "type": "`$STRING`",
@@ -128,6 +140,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "game",
         "op": {
           "list": {
@@ -161,8 +177,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/games",
-                "parts": [
-                  "games",
+                "segments": [
+                  {
+                    "lit": "games",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -175,6 +193,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "games",
+                ],
               },
               {
                 "args": {
@@ -191,8 +212,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/game",
-                "parts": [
-                  "game",
+                "segments": [
+                  {
+                    "lit": "game",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -203,6 +226,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "game",
+                ],
               },
             ],
           },

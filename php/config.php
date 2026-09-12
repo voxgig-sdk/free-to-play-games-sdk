@@ -68,11 +68,13 @@ class FreeToPlayGamesConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'freetogame_profile_url',
               'short' => 'URL to the game\'s profile page on FreeToGame',
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'game_url',
               'short' => 'URL to play or download the game',
               'type' => '`$STRING`',
@@ -103,6 +105,7 @@ class FreeToPlayGamesConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'release_date',
               'short' => 'Release date of the game in YYYY-MM-DD format',
               'type' => '`$STRING`',
@@ -123,6 +126,7 @@ class FreeToPlayGamesConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'uri',
               'name' => 'thumbnail',
               'short' => 'URL to the game\'s thumbnail image',
               'type' => '`$STRING`',
@@ -132,6 +136,10 @@ class FreeToPlayGamesConfig
               'short' => 'Title of the game',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'game',
           'op' => [
@@ -166,8 +174,10 @@ class FreeToPlayGamesConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/games',
-                  'parts' => [
-                    'games',
+                  'segments' => [
+                    [
+                      'lit' => 'games',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -179,6 +189,9 @@ class FreeToPlayGamesConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'games',
                   ],
                 ],
                 [
@@ -196,8 +209,10 @@ class FreeToPlayGamesConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/game',
-                  'parts' => [
-                    'game',
+                  'segments' => [
+                    [
+                      'lit' => 'game',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -207,6 +222,9 @@ class FreeToPlayGamesConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'game',
                   ],
                 ],
               ],

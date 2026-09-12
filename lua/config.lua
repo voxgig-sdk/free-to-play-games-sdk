@@ -42,11 +42,13 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "freetogame_profile_url",
             ["short"] = "URL to the game's profile page on FreeToGame",
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "game_url",
             ["short"] = "URL to play or download the game",
             ["type"] = "`$STRING`",
@@ -77,6 +79,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date",
             ["name"] = "release_date",
             ["short"] = "Release date of the game in YYYY-MM-DD format",
             ["type"] = "`$STRING`",
@@ -97,6 +100,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "uri",
             ["name"] = "thumbnail",
             ["short"] = "URL to the game's thumbnail image",
             ["type"] = "`$STRING`",
@@ -106,6 +110,10 @@ local function make_config()
             ["short"] = "Title of the game",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "game",
         ["op"] = {
@@ -140,8 +148,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/games",
-                ["parts"] = {
-                  "games",
+                ["segments"] = {
+                  {
+                    ["lit"] = "games",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -153,6 +163,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "games",
                 },
               },
               {
@@ -170,8 +183,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/game",
-                ["parts"] = {
-                  "game",
+                ["segments"] = {
+                  {
+                    ["lit"] = "game",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -181,6 +196,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "game",
                 },
               },
             },

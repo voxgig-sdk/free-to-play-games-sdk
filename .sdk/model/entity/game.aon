@@ -18,12 +18,14 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "freetogame_profile_url"
       req: false
       short: "URL to the game's profile page on FreeToGame"
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "game_url"
       req: false
       short: "URL to play or download the game"
@@ -60,6 +62,7 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "release_date"
       req: false
       short: "Release date of the game in YYYY-MM-DD format"
@@ -84,6 +87,7 @@ main: kit: entity: game: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "thumbnail"
       req: false
       short: "URL to the game's thumbnail image"
@@ -136,8 +140,10 @@ main: kit: entity: game: {
           }
           method: "GET"
           orig: "/games"
-          parts: [
-            "games"
+          segments: [
+            {
+              lit: "games"
+            }
           ]
           select: {
             exist: [
@@ -165,8 +171,10 @@ main: kit: entity: game: {
           }
           method: "GET"
           orig: "/game"
-          parts: [
-            "game"
+          segments: [
+            {
+              lit: "game"
+            }
           ]
           select: {
             exist: [

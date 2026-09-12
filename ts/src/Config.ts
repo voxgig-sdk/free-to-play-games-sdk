@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -77,11 +88,13 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "freetogame_profile_url",
           "short": "URL to the game's profile page on FreeToGame",
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "game_url",
           "short": "URL to play or download the game",
           "type": "`$STRING`"
@@ -112,6 +125,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date",
           "name": "release_date",
           "short": "Release date of the game in YYYY-MM-DD format",
           "type": "`$STRING`"
@@ -132,6 +146,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "uri",
           "name": "thumbnail",
           "short": "URL to the game's thumbnail image",
           "type": "`$STRING`"
@@ -142,6 +157,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "game",
       "op": {
         "list": {
@@ -175,8 +194,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/games",
-              "parts": [
-                "games"
+              "segments": [
+                {
+                  "lit": "games"
+                }
               ],
               "select": {
                 "exist": [
@@ -188,7 +209,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "games"
+              ]
             },
             {
               "args": {
@@ -205,8 +229,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/game",
-              "parts": [
-                "game"
+              "segments": [
+                {
+                  "lit": "game"
+                }
               ],
               "select": {
                 "exist": [
@@ -216,7 +242,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "game"
+              ]
             }
           ]
         }
@@ -232,6 +261,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

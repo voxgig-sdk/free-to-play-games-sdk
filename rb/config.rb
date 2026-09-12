@@ -54,11 +54,13 @@ module FreeToPlayGamesConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "freetogame_profile_url",
               "short" => "URL to the game's profile page on FreeToGame",
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "game_url",
               "short" => "URL to play or download the game",
               "type" => "`$STRING`",
@@ -89,6 +91,7 @@ module FreeToPlayGamesConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date",
               "name" => "release_date",
               "short" => "Release date of the game in YYYY-MM-DD format",
               "type" => "`$STRING`",
@@ -109,6 +112,7 @@ module FreeToPlayGamesConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "thumbnail",
               "short" => "URL to the game's thumbnail image",
               "type" => "`$STRING`",
@@ -119,6 +123,10 @@ module FreeToPlayGamesConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "game",
           "op" => {
             "list" => {
@@ -152,8 +160,10 @@ module FreeToPlayGamesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/games",
-                  "parts" => [
-                    "games",
+                  "segments" => [
+                    {
+                      "lit" => "games",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -166,6 +176,9 @@ module FreeToPlayGamesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "games",
+                  ],
                 },
                 {
                   "args" => {
@@ -182,8 +195,10 @@ module FreeToPlayGamesConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/game",
-                  "parts" => [
-                    "game",
+                  "segments" => [
+                    {
+                      "lit" => "game",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -194,6 +209,9 @@ module FreeToPlayGamesConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "game",
+                  ],
                 },
               ],
             },

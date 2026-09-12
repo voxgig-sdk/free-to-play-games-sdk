@@ -46,11 +46,13 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "freetogame_profile_url",
 						"short": "URL to the game's profile page on FreeToGame",
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "game_url",
 						"short": "URL to play or download the game",
 						"type": "`$STRING`",
@@ -81,6 +83,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "release_date",
 						"short": "Release date of the game in YYYY-MM-DD format",
 						"type": "`$STRING`",
@@ -101,6 +104,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "thumbnail",
 						"short": "URL to the game's thumbnail image",
 						"type": "`$STRING`",
@@ -110,6 +114,10 @@ func MakeConfig() map[string]any {
 						"short": "Title of the game",
 						"type": "`$STRING`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "game",
 				"op": map[string]any{
@@ -144,8 +152,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/games",
-								"parts": []any{
-									"games",
+								"segments": []any{
+									map[string]any{
+										"lit": "games",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -157,6 +167,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"games",
 								},
 							},
 							map[string]any{
@@ -174,8 +187,10 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/game",
-								"parts": []any{
-									"game",
+								"segments": []any{
+									map[string]any{
+										"lit": "game",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -185,6 +200,9 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"game",
 								},
 							},
 						},
@@ -196,6 +214,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (
