@@ -105,7 +105,7 @@ local results, err = client:Game():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
 | Python | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
 | PHP | `voxgig-sdk/free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/free-to-play-games-sdk/go` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Game():list()
 ### TypeScript
 
 ```ts
-import { FreeToPlayGamesSDK } from '@voxgig-sdk/free-to-play-games'
+import { FreeToPlayGamesSDK } from '@voxgig-sdk/free-to-play-games-sdk'
 
 const client = new FreeToPlayGamesSDK()
 
