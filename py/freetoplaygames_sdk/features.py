@@ -1,12 +1,18 @@
 # FreeToPlayGames SDK feature factory
 
 from freetoplaygames_sdk.feature.base_feature import FreeToPlayGamesBaseFeature
+from freetoplaygames_sdk.feature.ratelimit_feature import FreeToPlayGamesRatelimitFeature
+from freetoplaygames_sdk.feature.retry_feature import FreeToPlayGamesRetryFeature
 from freetoplaygames_sdk.feature.test_feature import FreeToPlayGamesTestFeature
+from freetoplaygames_sdk.feature.timeout_feature import FreeToPlayGamesTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: FreeToPlayGamesBaseFeature(),
+    "ratelimit": lambda: FreeToPlayGamesRatelimitFeature(),
+    "retry": lambda: FreeToPlayGamesRetryFeature(),
     "test": lambda: FreeToPlayGamesTestFeature(),
+    "timeout": lambda: FreeToPlayGamesTimeoutFeature(),
 }
 
 
