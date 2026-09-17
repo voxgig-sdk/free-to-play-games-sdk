@@ -105,12 +105,12 @@ local results, err = client:Game():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
-| Python | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
-| PHP | `voxgig-sdk/free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
+| TypeScript | `@voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
+| Python | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
+| PHP | `voxgig-sdk/free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/free-to-play-games-sdk/go` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go@latest` |
-| Ruby | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
-| Lua | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases) |
+| Ruby | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
+| Lua | `voxgig-sdk-free-to-play-games` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/free-to-play-games-sdk/go-cli` | `go install github.com/voxgig-sdk/free-to-play-games-sdk/go-cli/cmd/free-to-play-games@latest` |
 | Go MCP server | `github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp@latest` |
 
