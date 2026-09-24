@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,82 +107,97 @@ class Config {
             "fields": [
                 {
                     "name": "description",
-                    "short": "Full description of the game",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Full description of the game"
                 },
                 {
                     "name": "developer",
-                    "short": "Developer of the game",
-                    "type": "`$STRING`"
+                    "title": "Developer",
+                    "type": "`$STRING`",
+                    "short": "Developer of the game"
                 },
                 {
-                    "format": "uri",
                     "name": "freetogame_profile_url",
+                    "title": "Freetogame Profile Url",
+                    "type": "`$STRING`",
                     "short": "URL to the game's profile page on FreeToGame",
-                    "type": "`$STRING`"
+                    "format": "uri"
                 },
                 {
-                    "format": "uri",
                     "name": "game_url",
+                    "title": "Game Url",
+                    "type": "`$STRING`",
                     "short": "URL to play or download the game",
-                    "type": "`$STRING`"
+                    "format": "uri"
                 },
                 {
                     "name": "genre",
-                    "short": "Genre or category of the game",
-                    "type": "`$STRING`"
+                    "title": "Genre",
+                    "type": "`$STRING`",
+                    "short": "Genre or category of the game"
                 },
                 {
                     "name": "id",
-                    "short": "Unique identifier for the game",
-                    "type": "`$INTEGER`"
+                    "title": "Id",
+                    "type": "`$INTEGER`",
+                    "short": "Unique identifier for the game"
                 },
                 {
                     "name": "minimum_system_requirements",
-                    "short": "Minimum system requirements for PC games",
-                    "type": "`$OBJECT`"
+                    "title": "Minimum System Requirements",
+                    "type": "`$OBJECT`",
+                    "short": "Minimum system requirements for PC games"
                 },
                 {
                     "name": "platform",
-                    "short": "Platform(s) the game is available on",
-                    "type": "`$STRING`"
+                    "title": "Platform",
+                    "type": "`$STRING`",
+                    "short": "Platform(s) the game is available on"
                 },
                 {
                     "name": "publisher",
-                    "short": "Publisher of the game",
-                    "type": "`$STRING`"
+                    "title": "Publisher",
+                    "type": "`$STRING`",
+                    "short": "Publisher of the game"
                 },
                 {
-                    "format": "date",
                     "name": "release_date",
+                    "title": "Release Date",
+                    "type": "`$STRING`",
                     "short": "Release date of the game in YYYY-MM-DD format",
-                    "type": "`$STRING`"
+                    "format": "date"
                 },
                 {
                     "name": "screenshots",
-                    "short": "Array of screenshot images",
-                    "type": "`$ARRAY`"
+                    "title": "Screenshots",
+                    "type": "`$ARRAY`",
+                    "short": "Array of screenshot images"
                 },
                 {
                     "name": "short_description",
-                    "short": "Brief description of the game",
-                    "type": "`$STRING`"
+                    "title": "Short Description",
+                    "type": "`$STRING`",
+                    "short": "Brief description of the game"
                 },
                 {
                     "name": "status",
-                    "short": "Current status of the game (e.g., Live, Beta)",
-                    "type": "`$STRING`"
+                    "title": "Status",
+                    "type": "`$STRING`",
+                    "short": "Current status of the game (e.g., Live, Beta)"
                 },
                 {
-                    "format": "uri",
                     "name": "thumbnail",
+                    "title": "Thumbnail",
+                    "type": "`$STRING`",
                     "short": "URL to the game's thumbnail image",
-                    "type": "`$STRING`"
+                    "format": "uri"
                 },
                 {
                     "name": "title",
-                    "short": "Title of the game",
-                    "type": "`$STRING`"
+                    "title": "Title",
+                    "type": "`$STRING`",
+                    "short": "Title of the game"
                 }
             ],
             "id": {
@@ -203,29 +211,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "category",
-                                        "orig": "category",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "all",
-                                        "kind": "query",
-                                        "name": "platform",
-                                        "orig": "platform",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort_by",
-                                        "orig": "sort_by",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/games",
@@ -234,33 +219,46 @@ class Config {
                                     "lit": "games"
                                 }
                             ],
+                            "parts": [
+                                "games"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "category",
+                                        "orig": "category",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "platform",
+                                        "orig": "platform",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "all"
+                                    },
+                                    {
+                                        "name": "sort_by",
+                                        "orig": "sort_by",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "category",
                                     "platform",
                                     "sort_by"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "games"
-                            ]
+                            }
                         },
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "id",
-                                        "orig": "id",
-                                        "reqd": true,
-                                        "type": "`$INTEGER`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/game",
@@ -269,18 +267,30 @@ class Config {
                                     "lit": "game"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "id"
-                                ]
-                            },
+                            "parts": [
+                                "game"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "game"
-                            ]
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "id",
+                                        "orig": "id",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "id"
+                                ]
+                            }
                         }
                     ]
                 }

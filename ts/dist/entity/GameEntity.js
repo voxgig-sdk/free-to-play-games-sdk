@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GameEntity = void 0;
 const FreeToPlayGamesEntityBase_1 = require("../FreeToPlayGamesEntityBase");
-// TODO: needs Entity superclass
 class GameEntity extends FreeToPlayGamesEntityBase_1.FreeToPlayGamesEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

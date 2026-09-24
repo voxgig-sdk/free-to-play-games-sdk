@@ -1,7 +1,7 @@
 // Typed models for the FreeToPlayGames SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,21 +14,6 @@ import (
 
 // Game is the typed data model for the game entity.
 type Game struct {
-	Description *string `json:"description,omitempty"`
-	Developer *string `json:"developer,omitempty"`
-	FreetogameProfileUrl *string `json:"freetogame_profile_url,omitempty"`
-	GameUrl *string `json:"game_url,omitempty"`
-	Genre *string `json:"genre,omitempty"`
-	Id *int `json:"id,omitempty"`
-	MinimumSystemRequirements *map[string]any `json:"minimum_system_requirements,omitempty"`
-	Platform *string `json:"platform,omitempty"`
-	Publisher *string `json:"publisher,omitempty"`
-	ReleaseDate *string `json:"release_date,omitempty"`
-	Screenshots *[]any `json:"screenshots,omitempty"`
-	ShortDescription *string `json:"short_description,omitempty"`
-	Status *string `json:"status,omitempty"`
-	Thumbnail *string `json:"thumbnail,omitempty"`
-	Title *string `json:"title,omitempty"`
 }
 
 // GameListMatch is the typed request payload for Game.ListTyped.

@@ -19,7 +19,6 @@ import type {
   GameListMatch,
 } from '../FreeToPlayGamesTypes'
 
-// TODO: needs Entity superclass
 class GameEntity extends FreeToPlayGamesEntityBase<Game> {
 
   constructor(client: FreeToPlayGamesSDK, entopts: any) {

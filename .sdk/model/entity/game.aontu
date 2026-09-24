@@ -1,0 +1,220 @@
+# Entity: game
+
+main: kit: entity: game: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Full description of the game"
+      t: "`$STRING`"
+    }
+    developer: {
+      h: "Developer"
+      n: "developer"
+      r: false
+      sh: "Developer of the game"
+      t: "`$STRING`"
+    }
+    freetogame_profile_url: {
+      fo: "uri"
+      h: "Freetogame Profile Url"
+      n: "freetogame_profile_url"
+      r: false
+      sh: "URL to the game's profile page on FreeToGame"
+      t: "`$STRING`"
+    }
+    game_url: {
+      fo: "uri"
+      h: "Game Url"
+      n: "game_url"
+      r: false
+      sh: "URL to play or download the game"
+      t: "`$STRING`"
+    }
+    genre: {
+      h: "Genre"
+      n: "genre"
+      r: false
+      sh: "Genre or category of the game"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the game"
+      t: "`$INTEGER`"
+    }
+    minimum_system_requirements: {
+      h: "Minimum System Requirements"
+      n: "minimum_system_requirements"
+      r: false
+      sh: "Minimum system requirements for PC games"
+      t: "`$OBJECT`"
+    }
+    platform: {
+      h: "Platform"
+      n: "platform"
+      r: false
+      sh: "Platform(s) the game is available on"
+      t: "`$STRING`"
+    }
+    publisher: {
+      h: "Publisher"
+      n: "publisher"
+      r: false
+      sh: "Publisher of the game"
+      t: "`$STRING`"
+    }
+    release_date: {
+      fo: "date"
+      h: "Release Date"
+      n: "release_date"
+      r: false
+      sh: "Release date of the game in YYYY-MM-DD format"
+      t: "`$STRING`"
+    }
+    screenshots: {
+      h: "Screenshots"
+      n: "screenshots"
+      r: false
+      sh: "Array of screenshot images"
+      t: "`$ARRAY`"
+    }
+    short_description: {
+      h: "Short Description"
+      n: "short_description"
+      r: false
+      sh: "Brief description of the game"
+      t: "`$STRING`"
+    }
+    status: {
+      h: "Status"
+      n: "status"
+      r: false
+      sh: "Current status of the game (e.g., Live, Beta)"
+      t: "`$STRING`"
+    }
+    thumbnail: {
+      fo: "uri"
+      h: "Thumbnail"
+      n: "thumbnail"
+      r: false
+      sh: "URL to the game's thumbnail image"
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "Title of the game"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "game"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /games"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "category"
+                or: "category"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "all"
+                k: "query"
+                n: "platform"
+                or: "platform"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "sort_by"
+                or: "sort_by"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/games"
+          q: {
+            exist: [
+              "category"
+              "platform"
+              "sort_by"
+            ]
+          }
+          s: [
+            {
+              lit: "games"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /game"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/game"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "game"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
