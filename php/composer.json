@@ -1,5 +1,5 @@
 {
-  "name": "voxgig-sdk/free-to-play-games",
+  "name": "voxgig-sdk/free-to-play-games-sdk",
   "description": "Unofficial generated PHP SDK for the Free-To-Play Games public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
   "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "free-to-play-games"],
