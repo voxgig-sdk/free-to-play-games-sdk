@@ -152,7 +152,7 @@ main: kit: entity: game: {
               {
                 k: "query"
                 n: "sort_by"
-                or: "sort_by"
+                or: "sort-by"
                 r: false
                 t: "`$STRING`"
               }

@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
+> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -105,12 +105,12 @@ local results, err = client:Game():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
-| Python | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
-| PHP | `voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
+| TypeScript | `@voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from source](ts/README.md#install) |
+| Python | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from source](py/README.md#install) |
+| PHP | `voxgig-sdk/free-to-play-games-sdk` | publish pending — [install from source](php/README.md#install) |
 | Golang | `github.com/voxgig-sdk/free-to-play-games-sdk/go` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go@latest` |
-| Ruby | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
-| Lua | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags) |
+| Ruby | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from source](rb/README.md#install) |
+| Lua | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from source](lua/README.md#install) |
 | Go CLI | `github.com/voxgig-sdk/free-to-play-games-sdk/go-cli` | `go install github.com/voxgig-sdk/free-to-play-games-sdk/go-cli/cmd/free-to-play-games@latest` |
 | Go MCP server | `github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp@latest` |
 

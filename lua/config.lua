@@ -224,7 +224,7 @@ local function make_config()
                     },
                     {
                       ["name"] = "sort_by",
-                      ["orig"] = "sort_by",
+                      ["orig"] = "sort-by",
                       ["type"] = "`$STRING`",
                       ["kind"] = "query",
                     },

@@ -228,7 +228,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "sort_by",
-											"orig": "sort_by",
+											"orig": "sort-by",
 											"type": "`$STRING`",
 											"kind": "query",
 										},

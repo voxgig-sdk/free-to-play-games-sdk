@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 FreeToPlayGamesUtility::setRegistrar(function (FreeToPlayGamesUtility $u): void {
     $u->clean = [FreeToPlayGamesClean::class, 'call'];
+    $u->clean_add = [FreeToPlayGamesClean::class, 'add'];
+    $u->clean_explain = [FreeToPlayGamesDone::class, 'clean_explain'];
     $u->done = [FreeToPlayGamesDone::class, 'call'];
     $u->make_error = [FreeToPlayGamesMakeError::class, 'call'];
     $u->feature_add = [FreeToPlayGamesFeatureAdd::class, 'call'];

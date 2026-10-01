@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 FreeToPlayGamesUtility.registrar = ->(u) {
   u.clean = FreeToPlayGamesUtilities::Clean
+  u.clean_add = FreeToPlayGamesUtilities::CleanAdd
+  u.clean_explain = FreeToPlayGamesUtilities::CleanExplain
   u.done = FreeToPlayGamesUtilities::Done
   u.make_error = FreeToPlayGamesUtilities::MakeError
   u.feature_add = FreeToPlayGamesUtilities::FeatureAdd

@@ -12,9 +12,14 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`):
+GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases)), or
+from a clone as a Composer path repository:
 
-- Releases: [https://github.com/voxgig-sdk/free-to-play-games-sdk/releases](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/free-to-play-games-sdk
+composer config repositories.free-to-play-games-sdk path ./free-to-play-games-sdk/php
+composer require voxgig-sdk/free-to-play-games-sdk:@dev
+```
 
 
 ## Tutorial: your first API call
