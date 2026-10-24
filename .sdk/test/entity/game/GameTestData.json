@@ -75,12 +75,12 @@
     }
   },
   "requests": {
-    "GET /games": {
+    "GET /game": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"
     },
-    "GET /game": {
+    "GET /games": {
       "provenance": "operation-contract",
       "version": 2,
       "source": "openapi3"

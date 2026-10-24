@@ -14,7 +14,7 @@ An entity groups related API operations. An operation can have several routes wi
 
 ### Game
 
-Results: Successful response with list of games; Successful response with game details.
+Results: Successful response with game details; Successful response with list of games.
 
 SDK operations: `list`.
 
@@ -32,8 +32,8 @@ Use this map to locate a capability. Consult the entity reference before supplyi
 
 | Entity | SDK operation | HTTP route | Authentication |
 | --- | --- | --- | --- |
-| Game | `list` | `GET /games` | See reference |
 | Game | `list` | `GET /game` | See reference |
+| Game | `list` | `GET /games` | See reference |
 
 ## Connect to the API
 

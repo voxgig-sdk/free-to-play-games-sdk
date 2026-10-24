@@ -24,9 +24,7 @@
 ---@field title? string
 
 ---@class GameListMatch
----@field category? string
----@field platform? string
----@field sort_by? string
+---@field id number
 
 local M = {}
 

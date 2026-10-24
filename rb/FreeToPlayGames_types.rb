@@ -75,18 +75,10 @@ Game = Struct.new(
 
 # Request payload for Game#list.
 #
-# @!attribute [rw] category
-#   @return [String, nil]
-#
-# @!attribute [rw] platform
-#   @return [String, nil]
-#
-# @!attribute [rw] sort_by
-#   @return [String, nil]
+# @!attribute [rw] id
+#   @return [Integer]
 GameListMatch = Struct.new(
-  :category,
-  :platform,
-  :sort_by,
+  :id,
   keyword_init: true
 )
 

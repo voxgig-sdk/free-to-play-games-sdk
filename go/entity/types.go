@@ -18,9 +18,7 @@ type Game struct {
 
 // GameListMatch is the typed request payload for Game.ListTyped.
 type GameListMatch struct {
-	Category *string `json:"category,omitempty"`
-	Platform *string `json:"platform,omitempty"`
-	SortBy *string `json:"sort_by,omitempty"`
+	Id int `json:"id"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

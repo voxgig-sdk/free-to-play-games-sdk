@@ -24,8 +24,6 @@ export interface Game {
 }
 
 export interface GameListMatch {
-  category?: string
-  platform?: string
-  sort_by?: string
+  id: number
 }
 

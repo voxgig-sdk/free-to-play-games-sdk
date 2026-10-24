@@ -3,5 +3,18 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Developer of the game",
+      "Full description of the game",
+      "Genre or category of the game",
+      "Production server",
+      "Successful response with game details",
+      "Successful response with list of games",
+      "The Free-To-Play Games Database API offers programmatic access to a comprehensive collection of the best free games available. Users can retrieve detailed information about various games, including genres, developers, and release dates, without any restrictions or authentication required.",
+      "URL to play or download the game",
+      "URL to the game&#39;s profile page on FreeToGame"
+    ]
+  }
 }

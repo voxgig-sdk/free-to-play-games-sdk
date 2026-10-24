@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // FreeToPlayGames SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class FreeToPlayGamesPrepareBody
 {
     public static function call(FreeToPlayGamesContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (FreeToPlayGamesMedia::isRawRequest($ctx->point)) {
+                return FreeToPlayGamesMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

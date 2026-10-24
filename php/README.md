@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `$
 
 ## Install
 This package is not yet published to Packagist. Install it from the
-GitHub release tag (`php/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases)), or
+GitHub release tag (`php/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags)), or
 from a clone as a Composer path repository:
 
 ```bash
@@ -41,7 +41,7 @@ $client = new FreeToPlayGamesSDK();
 ```php
 try {
     // list() returns entity instances; data_get() reads each record.
-    $games = $client->Game()->list();
+    $games = $client->Game()->list(["id" => 1]);
     foreach ($games as $record) {
         $item = $record->data_get();
         echo $item["id"] . " " . $item["description"] . "\n";
@@ -59,7 +59,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $games = $client->Game()->list();
+    $games = $client->Game()->list(["id" => 1]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -133,7 +133,7 @@ $client = FreeToPlayGamesSDK::test();
 
 // list() returns entity instances (throws on error);
 // call data_get() for the mock record.
-$game = $client->Game()->list();
+$game = $client->Game()->list(["id" => 1]);
 print_r(array_map(fn($item) => $item->data_get(), $game));
 ```
 
@@ -221,7 +221,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
+| `list` | `(?array $reqmatch = null, $ctrl): mixed` | List entities matching the criteria (call with no argument to list all), one per record. |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -231,9 +231,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
-ops, a `list` for `list`) and throw on error. Wrap calls in
-`try`/`catch` to handle failures.
+Entity operations return the entity, and `list` an `array` of entities, one
+per record; an entity's `data_get()` reads its record (an `array`). They
+throw on error, so wrap calls in `try`/`catch` to handle failures.
 
 The `direct()` escape hatch never throws — it returns a result `array`
 you branch on via `$result["ok"]`:
@@ -271,7 +271,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 Operations: List.
 
-API path: `/games`
+API path: `/game`
 
 
 
@@ -311,8 +311,8 @@ Create an instance: `$game = $client->Game();`
 #### Example: List
 
 ```php
-// list() returns an array of Game records (throws on error).
-$games = $client->Game()->list();
+// list() returns an array of Game entities, one per record (throws on error).
+$games = $client->Game()->list(["id" => 1]);
 ```
 
 ## Features
@@ -478,7 +478,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $game = $client->Game();
-$game->list();
+$game->list(["id" => 1]);
 
 // $game->data_get() now returns the game data from the last list
 // $game->match_get() returns the last match criteria

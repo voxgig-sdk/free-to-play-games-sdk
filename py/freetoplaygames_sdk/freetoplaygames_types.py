@@ -34,7 +34,5 @@ class Game(TypedDict, total=False):
     title: str
 
 
-class GameListMatch(TypedDict, total=False):
-    category: str
-    platform: str
-    sort_by: str
+class GameListMatch(TypedDict):
+    id: int

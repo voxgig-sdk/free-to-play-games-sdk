@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { FreeToPlayGamesSDK, BaseFeature, stdutil } from '../../..'
+import { FreeToPlayGamesSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('GameEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('game hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of FreeToPlayGamesSDK.test(offline).Game().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of FreeToPlayGamesSDK.test(offline).Game()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = FreeToPlayGamesSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Game().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of FreeToPlayGamesSDK.test().Game().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new FreeToPlayGamesSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Game().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Game().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = FreeToPlayGamesSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Game().list({"id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.FREE_TO_PLAY_GAMES_TEST_LIVE
@@ -51,7 +109,7 @@ describe('GameEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Full description of the game","t":"`$STRING`","key$":"description","index$":0},"developer":{"a":true,"h":"Developer","n":"developer","r":false,"sh":"Developer of the game","t":"`$STRING`","key$":"developer","index$":1},"freetogame_profile_url":{"a":true,"fo":"uri","h":"Freetogame Profile Url","n":"freetogame_profile_url","r":false,"sh":"URL to the game's profile page on FreeToGame","t":"`$STRING`","key$":"freetogame_profile_url","index$":2},"game_url":{"a":true,"fo":"uri","h":"Game Url","n":"game_url","r":false,"sh":"URL to play or download the game","t":"`$STRING`","key$":"game_url","index$":3},"genre":{"a":true,"h":"Genre","n":"genre","r":false,"sh":"Genre or category of the game","t":"`$STRING`","key$":"genre","index$":4},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier for the game","t":"`$INTEGER`","key$":"id","index$":5},"minimum_system_requirements":{"a":true,"h":"Minimum System Requirements","n":"minimum_system_requirements","r":false,"sh":"Minimum system requirements for PC games","t":"`$OBJECT`","key$":"minimum_system_requirements","index$":6},"platform":{"a":true,"h":"Platform","n":"platform","r":false,"sh":"Platform(s) the game is available on","t":"`$STRING`","key$":"platform","index$":7},"publisher":{"a":true,"h":"Publisher","n":"publisher","r":false,"sh":"Publisher of the game","t":"`$STRING`","key$":"publisher","index$":8},"release_date":{"a":true,"fo":"date","h":"Release Date","n":"release_date","r":false,"sh":"Release date of the game in YYYY-MM-DD format","t":"`$STRING`","key$":"release_date","index$":9},"screenshots":{"a":true,"h":"Screenshots","n":"screenshots","r":false,"sh":"Array of screenshot images","t":"`$ARRAY`","key$":"screenshots","index$":10},"short_description":{"a":true,"h":"Short Description","n":"short_description","r":false,"sh":"Brief description of the game","t":"`$STRING`","key$":"short_description","index$":11},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Current status of the game (e.g., Live, Beta)","t":"`$STRING`","key$":"status","index$":12},"thumbnail":{"a":true,"fo":"uri","h":"Thumbnail","n":"thumbnail","r":false,"sh":"URL to the game's thumbnail image","t":"`$STRING`","key$":"thumbnail","index$":13},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"Title of the game","t":"`$STRING`","key$":"title","index$":14}},"id":{"field":"id","name":"id"},"name":"game","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /games","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"category","or":"category","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"all","k":"query","n":"platform","or":"platform","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"sort_by","or":"sort-by","r":false,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/games","q":{"exist":["category","platform","sort_by"]},"r":{},"s":[{"lit":"games"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /game","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"id","or":"id","r":true,"t":"`$INTEGER`","index$":0}]},"k":"http","m":"GET","o":"/game","q":{"exist":["id"]},"r":{},"s":[{"lit":"game"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"game","name__orig":"game","Name":"Game","name_":"game","name-":"game","NAME":"GAME","index$":0}, {"active":true,"entity":"game","key$":"BasicGameFlow","kind":"basic","name":"BasicGameFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"game_ref01"}}],"index$":0}]}, 'Game', {"GET /games":{"protocol":"http","parameters":[{"name":"platform","in":"query","description":"Filter games by platform (e.g., pc, browser, all)","required":false,"schema":{"type":"string","enum":["pc","browser","all"],"default":"all"},"index$":0},{"name":"category","in":"query","description":"Filter games by category/genre (e.g., mmorpg, shooter, strategy, moba, racing, sports, social, sandbox, open-world, survival, pvp, pve, pixel, voxel, zombie, turn-based, first-person, third-person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, card, battle-royale, mmo, mmofps, mmotps, 3d, 2d, anime, fantasy, sci-fi, fighting, action-rpg, action, military, martial-arts, flight, low-spec, tower-defense, horror, mmorts)","required":false,"schema":{"type":"string"},"index$":1},{"name":"sort-by","in":"query","description":"Sort games by criteria (e.g., release-date, popularity, alphabetical, relevance)","required":false,"schema":{"type":"string","enum":["release-date","popularity","alphabetical","relevance"]},"index$":2}]},"GET /game":{"protocol":"http","parameters":[{"name":"id","in":"query","description":"The ID of the game to retrieve","required":true,"schema":{"type":"integer"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Full description of the game","t":"`$STRING`","key$":"description","index$":0},"developer":{"a":true,"h":"Developer","n":"developer","r":false,"sh":"Developer of the game","t":"`$STRING`","key$":"developer","index$":1},"freetogame_profile_url":{"a":true,"fo":"uri","h":"Freetogame Profile Url","n":"freetogame_profile_url","r":false,"sh":"URL to the game's profile page on FreeToGame","t":"`$STRING`","key$":"freetogame_profile_url","index$":2},"game_url":{"a":true,"fo":"uri","h":"Game Url","n":"game_url","r":false,"sh":"URL to play or download the game","t":"`$STRING`","key$":"game_url","index$":3},"genre":{"a":true,"h":"Genre","n":"genre","r":false,"sh":"Genre or category of the game","t":"`$STRING`","key$":"genre","index$":4},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique identifier for the game","t":"`$INTEGER`","key$":"id","index$":5},"minimum_system_requirements":{"a":true,"h":"Minimum System Requirements","n":"minimum_system_requirements","r":false,"sh":"Minimum system requirements for PC games","t":"`$OBJECT`","key$":"minimum_system_requirements","index$":6},"platform":{"a":true,"h":"Platform","n":"platform","r":false,"sh":"Platform(s) the game is available on","t":"`$STRING`","key$":"platform","index$":7},"publisher":{"a":true,"h":"Publisher","n":"publisher","r":false,"sh":"Publisher of the game","t":"`$STRING`","key$":"publisher","index$":8},"release_date":{"a":true,"fo":"date","h":"Release Date","n":"release_date","r":false,"sh":"Release date of the game in YYYY-MM-DD format","t":"`$STRING`","key$":"release_date","index$":9},"screenshots":{"a":true,"h":"Screenshots","n":"screenshots","r":false,"sh":"Array of screenshot images","t":"`$ARRAY`","key$":"screenshots","index$":10},"short_description":{"a":true,"h":"Short Description","n":"short_description","r":false,"sh":"Brief description of the game","t":"`$STRING`","key$":"short_description","index$":11},"status":{"a":true,"h":"Status","n":"status","r":false,"sh":"Current status of the game (e.g., Live, Beta)","t":"`$STRING`","key$":"status","index$":12},"thumbnail":{"a":true,"fo":"uri","h":"Thumbnail","n":"thumbnail","r":false,"sh":"URL to the game's thumbnail image","t":"`$STRING`","key$":"thumbnail","index$":13},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"Title of the game","t":"`$STRING`","key$":"title","index$":14}},"id":{"field":"id","name":"id"},"name":"game","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /game","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"id","or":"id","r":true,"t":"`$INTEGER`","index$":0}]},"k":"http","m":"GET","o":"/game","q":{"exist":["id"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"game"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /games","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"category","or":"category","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"all","k":"query","n":"platform","or":"platform","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"sort_by","or":"sort-by","r":false,"t":"`$STRING`","index$":2}]},"k":"http","m":"GET","o":"/games","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"games"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"game","name__orig":"game","Name":"Game","name_":"game","name-":"game","NAME":"GAME","index$":0}, {"active":true,"entity":"game","key$":"BasicGameFlow","kind":"basic","name":"BasicGameFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"game_ref01"}}],"index$":0}]}, 'Game', {"GET /game":{"protocol":"http","parameters":[{"name":"id","in":"query","description":"The ID of the game to retrieve","required":true,"schema":{"type":"integer"},"index$":0}]},"GET /games":{"protocol":"http","parameters":[{"name":"platform","in":"query","description":"Filter games by platform (e.g., pc, browser, all)","required":false,"schema":{"type":"string","enum":["pc","browser","all"],"default":"all"},"index$":0},{"name":"category","in":"query","description":"Filter games by category/genre (e.g., mmorpg, shooter, strategy, moba, racing, sports, social, sandbox, open-world, survival, pvp, pve, pixel, voxel, zombie, turn-based, first-person, third-person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, card, battle-royale, mmo, mmofps, mmotps, 3d, 2d, anime, fantasy, sci-fi, fighting, action-rpg, action, military, martial-arts, flight, low-spec, tower-defense, horror, mmorts)","required":false,"schema":{"type":"string"},"index$":1},{"name":"sort-by","in":"query","description":"Sort games by criteria (e.g., release-date, popularity, alphabetical, relevance)","required":false,"schema":{"type":"string","enum":["release-date","popularity","alphabetical","relevance"]},"index$":2}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('GameEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

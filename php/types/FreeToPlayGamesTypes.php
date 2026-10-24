@@ -35,8 +35,6 @@ class Game
 /** Request payload for Game#list. */
 class GameListMatch
 {
-    public ?string $category = null;
-    public ?string $platform = null;
-    public ?string $sort_by = null;
+    public int $id;
 }
 

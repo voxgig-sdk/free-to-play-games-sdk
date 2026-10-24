@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/free-to-play-games-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/free-to-play-games-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -43,10 +43,11 @@ client = FreeToPlayGamesSDK.new
 
 ```ruby
 begin
-  # list returns an Array of Game records — iterate directly.
-  games = client.Game.list
+  # list returns an Array of Game entities, one per record; data_get reads the record.
+  games = client.Game.list({ "id" => 1 })
   games.each do |item|
-    puts "#{item["id"]} #{item["description"]}"
+    record = item.data_get
+    puts "#{record["id"]} #{record["description"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -60,7 +61,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  games = client.Game.list()
+  games = client.Game.list({ "id" => 1 })
 rescue => err
   warn "list failed: #{err}"
 end
@@ -128,10 +129,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = FreeToPlayGamesSDK.test
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-game = client.Game.list()
-puts game
+# list returns an Array of Game entities, one per mock record (raises on
+# error); data_get reads each record.
+games = client.Game.list({ "id" => 1 })
+games.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -215,7 +216,7 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -225,9 +226,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `FreeToPlayGamesError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`FreeToPlayGamesError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -264,7 +266,7 @@ returns a result `Hash` with these keys:
 
 Operations: List.
 
-API path: `/games`
+API path: `/game`
 
 
 
@@ -304,8 +306,9 @@ Create an instance: `game = client.Game`
 #### Example: List
 
 ```ruby
-# list returns an Array of Game records (raises on error).
-games = client.Game.list
+# list returns an Array of Game entities, one per record (raises on error).
+games = client.Game.list({ "id" => 1 })
+games.each { |item| puts item.data_get }
 ```
 
 ## Features
@@ -471,7 +474,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 game = client.Game
-game.list()
+game.list({ "id" => 1 })
 
 # game.data_get now returns the game data from the last list
 # game.match_get returns the last match criteria

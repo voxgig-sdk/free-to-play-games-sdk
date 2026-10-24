@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -222,6 +223,45 @@ def make_config():
               {
                 "kind": "http",
                 "method": "GET",
+                "orig": "/game",
+                "segments": [
+                  {
+                    "lit": "game",
+                  },
+                ],
+                "parts": [
+                  "game",
+                ],
+                "rename": {},
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "args": {
+                  "query": [
+                    {
+                      "name": "id",
+                      "orig": "id",
+                      "type": "`$INTEGER`",
+                      "kind": "query",
+                      "reqd": True,
+                      "field": True,
+                    },
+                  ],
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
+                },
+              },
+              {
+                "kind": "http",
+                "method": "GET",
                 "orig": "/games",
                 "segments": [
                   {
@@ -250,6 +290,7 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "all",
+                      "field": True,
                     },
                     {
                       "name": "sort_by",
@@ -259,46 +300,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "category",
-                    "platform",
-                    "sort_by",
-                  ],
-                },
-              },
-              {
-                "kind": "http",
-                "method": "GET",
-                "orig": "/game",
-                "segments": [
-                  {
-                    "lit": "game",
-                  },
-                ],
-                "parts": [
-                  "game",
-                ],
-                "rename": {},
-                "transform": {
-                  "req": "`reqdata`",
-                  "res": "`body`",
-                },
-                "args": {
-                  "query": [
-                    {
-                      "name": "id",
-                      "orig": "id",
-                      "type": "`$INTEGER`",
-                      "kind": "query",
-                      "reqd": True,
-                    },
-                  ],
-                },
-                "select": {
-                  "exist": [
-                    "id",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

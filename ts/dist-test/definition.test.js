@@ -13,51 +13,24 @@ const PLAN = [
         "accessor": "Game",
         "op": "list",
         "method": "GET",
-        "path": "/games",
-        "args": [],
-        "select": {
-            "category": "v1",
-            "platform": "v1",
-            "sort_by": "v1"
-        },
-        "headers": [],
-        "query": [
-            "platform",
-            "category",
-            "sort-by"
-        ],
-        "auth": null,
-        "status": 200,
-        "sample": [
-            {
-                "id": 540,
-                "title": "Overwatch 2",
-                "thumbnail": "https://www.freetogame.com/g/540/thumbnail.jpg",
-                "short_description": "A hero-focused first-person team shooter from Blizzard Entertainment.",
-                "game_url": "https://www.freetogame.com/open/overwatch-2",
-                "genre": "Shooter",
-                "platform": "PC (Windows)",
-                "publisher": "Activision Blizzard",
-                "developer": "Blizzard Entertainment",
-                "release_date": "2022-10-04",
-                "freetogame_profile_url": "https://www.freetogame.com/overwatch-2"
-            }
-        ],
-        "idField": "id"
-    },
-    {
-        "entity": "game",
-        "accessor": "Game",
-        "op": "list",
-        "method": "GET",
         "path": "/game",
         "args": [],
         "select": {
             "id": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "id"
+        ],
+        "queryArgs": [
+            {
+                "name": "id",
+                "wire": "id"
+            }
         ],
         "auth": null,
         "status": 200,
@@ -89,6 +62,61 @@ const PLAN = [
                 }
             ]
         },
+        "idField": "id"
+    },
+    {
+        "entity": "game",
+        "accessor": "Game",
+        "op": "list",
+        "method": "GET",
+        "path": "/games",
+        "args": [],
+        "select": {
+            "category": "v1",
+            "platform": "all",
+            "sort_by": "v1"
+        },
+        "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
+        "query": [
+            "platform",
+            "category",
+            "sort-by"
+        ],
+        "queryArgs": [
+            {
+                "name": "category",
+                "wire": "category"
+            },
+            {
+                "name": "platform",
+                "wire": "platform"
+            },
+            {
+                "name": "sort_by",
+                "wire": "sort-by"
+            }
+        ],
+        "auth": null,
+        "status": 200,
+        "sample": [
+            {
+                "id": 540,
+                "title": "Overwatch 2",
+                "thumbnail": "https://www.freetogame.com/g/540/thumbnail.jpg",
+                "short_description": "A hero-focused first-person team shooter from Blizzard Entertainment.",
+                "game_url": "https://www.freetogame.com/open/overwatch-2",
+                "genre": "Shooter",
+                "platform": "PC (Windows)",
+                "publisher": "Activision Blizzard",
+                "developer": "Blizzard Entertainment",
+                "release_date": "2022-10-04",
+                "freetogame_profile_url": "https://www.freetogame.com/overwatch-2"
+            }
+        ],
         "idField": "id"
     }
 ];

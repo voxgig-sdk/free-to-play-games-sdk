@@ -79,6 +79,7 @@ module FreeToPlayGamesConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -205,6 +206,45 @@ module FreeToPlayGamesConfig
                 {
                   "kind" => "http",
                   "method" => "GET",
+                  "orig" => "/game",
+                  "segments" => [
+                    {
+                      "lit" => "game",
+                    },
+                  ],
+                  "parts" => [
+                    "game",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "id",
+                        "orig" => "id",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "reqd" => true,
+                        "field" => true,
+                      },
+                    ],
+                  },
+                  "select" => {
+                    "exist" => [
+                      "id",
+                    ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
+                },
+                {
+                  "kind" => "http",
+                  "method" => "GET",
                   "orig" => "/games",
                   "segments" => [
                     {
@@ -233,6 +273,7 @@ module FreeToPlayGamesConfig
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "all",
+                        "field" => true,
                       },
                       {
                         "name" => "sort_by",
@@ -242,46 +283,10 @@ module FreeToPlayGamesConfig
                       },
                     ],
                   },
-                  "select" => {
-                    "exist" => [
-                      "category",
-                      "platform",
-                      "sort_by",
-                    ],
-                  },
-                },
-                {
-                  "kind" => "http",
-                  "method" => "GET",
-                  "orig" => "/game",
-                  "segments" => [
-                    {
-                      "lit" => "game",
-                    },
-                  ],
-                  "parts" => [
-                    "game",
-                  ],
-                  "rename" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "args" => {
-                    "query" => [
-                      {
-                        "name" => "id",
-                        "orig" => "id",
-                        "type" => "`$INTEGER`",
-                        "kind" => "query",
-                        "reqd" => true,
-                      },
-                    ],
-                  },
-                  "select" => {
-                    "exist" => [
-                      "id",
-                    ],
+                  "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

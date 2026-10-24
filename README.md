@@ -27,7 +27,7 @@ support (`list`):
 
 ```ts
 const client = new FreeToPlayGamesSDK()
-const items = await client.Game().list()
+const items = await client.Game().list({ id: 1 })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -51,18 +51,17 @@ const client = FreeToPlayGamesSDK.test({
     },
   },
 })
-const games = await client.Game().list()
-// games is an array of Game entities, populated with mock data
-// — call games[0].data() for the record itself
-console.log(games)
+const games = await client.Game().list({ id: 1 })
+// games is an array of Game entities, one per mock record
+console.log(games.map((game) => game.data()))
 ```
 
 ### Python
 
 ```python
 client = FreeToPlayGamesSDK.test()
-games = client.Game().list()
-print(games)
+games = client.Game().list({"id": 1})
+print([item.data_get() for item in games])
 ```
 
 ### PHP
@@ -70,9 +69,9 @@ print(games)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = FreeToPlayGamesSDK::test([
-    "entity" => ["game" => ["test01" => []]],
+    "entity" => ["game" => ["test01" => ["id" => "test01"]]],
 ]);
-$games = $client->Game()->list();
+$games = $client->Game()->list(["id" => 1]);
 ```
 
 ### Golang
@@ -80,7 +79,7 @@ $games = $client->Game()->list();
 ```go
 client := sdk.Test()
 result, err := client.Game(nil).List(
-    nil, nil,
+    map[string]any{"id": 1}, nil,
 )
 ```
 
@@ -89,16 +88,16 @@ result, err := client.Game(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = FreeToPlayGamesSDK.test({
-  "entity" => { "game" => { "test01" => {} } },
+  "entity" => { "game" => { "test01" => { "id" => "test01" } } },
 })
-games = client.Game.list()
+games = client.Game.list({ "id" => 1 })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Game():list()
+local results, err = client:Game():list({ id = 1 })
 ```
 
 ## Packages
@@ -111,8 +110,8 @@ local results, err = client:Game():list()
 | Golang | `github.com/voxgig-sdk/free-to-play-games-sdk/go` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go@latest` |
 | Ruby | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from source](rb/README.md#install) |
 | Lua | `voxgig-sdk-free-to-play-games-sdk` | publish pending — [install from source](lua/README.md#install) |
-| Go CLI | `github.com/voxgig-sdk/free-to-play-games-sdk/go-cli` | `go install github.com/voxgig-sdk/free-to-play-games-sdk/go-cli/cmd/free-to-play-games@latest` |
-| Go MCP server | `github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp` | `go get github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp@latest` |
+| Go CLI | `github.com/voxgig-sdk/free-to-play-games-sdk/go-cli` | build from source — [go-cli/README.md](go-cli/README.md) |
+| Go MCP server | `github.com/voxgig-sdk/free-to-play-games-sdk/go-mcp` | build from source — [go-mcp/README.md](go-mcp/README.md) |
 
 ## Quickstart
 
@@ -123,10 +122,10 @@ import { FreeToPlayGamesSDK } from '@voxgig-sdk/free-to-play-games-sdk'
 
 const client = new FreeToPlayGamesSDK()
 
-// List all games (returns GameEntity[] — .data() for the record)
-const games = await client.Game().list()
+// List all games (returns GameEntity[], one entity per record)
+const games = await client.Game().list({ id: 1 })
 for (const game of games) {
-  console.log(game)
+  console.log(game.data())
 }
 ```
 
@@ -142,9 +141,10 @@ See the [TypeScript README](ts/README.md) for the full guide.
 
 ## Use it from an AI agent (MCP)
 
-The generated MCP server exposes every operation in this SDK as an
-[MCP](https://modelcontextprotocol.io) tool that Claude, Cursor or Cline
-can call directly. Build and register it:
+The generated MCP server exposes this SDK's list operations as
+[MCP](https://modelcontextprotocol.io) tools that Claude, Cursor or Cline
+can call directly. It only reads: create, update, patch and remove become tools when the SDK's model sets
+`main: kit: target: 'go-mcp': tool: write: true`. Build and register it:
 
 ```bash
 cd go-mcp && go build -o free-to-play-games-mcp .
@@ -168,7 +168,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Game** | The Game entity (list). | `/games` |
+| **Game** | The Game entity (list). | `/game` |
 
 The operations available across these entities are **list** — see each entity's
 own list above for exactly which it supports.
@@ -182,10 +182,10 @@ from freetoplaygames_sdk import FreeToPlayGamesSDK
 
 client = FreeToPlayGamesSDK()
 
-# List all games (returns a list, raises on error)
-games = client.Game().list()
+# List all games (a list of entities, one per record; raises on error)
+games = client.Game().list({"id": 1})
 for game in games:
-    print(game)
+    print(game.data_get())
 ```
 
 ### PHP
@@ -196,8 +196,8 @@ require_once 'freetoplaygames_sdk.php';
 
 $client = new FreeToPlayGamesSDK();
 
-// List all games (returns an array; throws on error)
-$games = $client->Game()->list();
+// List all games (an array of entities, one per record; throws on error)
+$games = $client->Game()->list(["id" => 1]);
 print_r(array_map(fn($item) => $item->data_get(), $games));
 ```
 
@@ -208,12 +208,14 @@ import sdk "github.com/voxgig-sdk/free-to-play-games-sdk/go"
 
 client := sdk.New()
 
-// List all games
-games, err := client.Game(nil).List(nil, nil)
+// List all games (one entity per record; err is non-nil on failure)
+games, err := client.Game(nil).List(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(games)
+for _, game := range games.([]any) {
+    fmt.Println(game.(sdk.Entity).Data())
+}
 ```
 
 ### Ruby
@@ -223,21 +225,25 @@ require_relative "FreeToPlayGames_sdk"
 
 client = FreeToPlayGamesSDK.new
 
-# List all games (returns an Array; raises on error)
-games = client.Game.list
-puts games
+# List all games (an Array of entities, one per record; raises on error)
+games = client.Game.list({ "id" => 1 })
+games.each { |item| puts item.data_get }
 ```
 
 ### Lua
 
 ```lua
 local sdk = require("free-to-play-games_sdk")
+local json = require("dkjson")
 
 local client = sdk.new()
 
--- List all games
-local games, err = client:Game():list()
-print(games)
+-- List all games (an array of entities, one per record; err on failure)
+local games, err = client:Game():list({ id = 1 })
+if err then error(err) end
+for _, game in ipairs(games) do
+  print(json.encode(game:data_get()))
+end
 ```
 
 ## Direct and prepare
@@ -263,10 +269,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
-if (result instanceof Error) {
-  throw result
+if (result.ok) {
+  console.log(result.data)
 }
-console.log(result.data)
 ```
 
 **Python:**
@@ -351,23 +356,52 @@ Pass custom features via the `extend` option at construction time.
 This repository contains its own generator (`.sdk/`), so the SDK is
 customizable without forking any upstream tool:
 
-- **The model** (`.sdk/model/`) declares everything this project owns:
-  package names, versions, active features, per-target settings. It is
-  written in [aontu](https://aontu.dev), a JSON-based
+- **The model** (`.sdk/model/`) is what generation reads: the API's
+  entities and operations, the targets, the features, and this project's
+  own settings. It is written in [aontu](https://aontu.dev), a JSON-based
   specification language designed for building ontologies: easy to edit
   by hand, and files unify rather than override, so small declarations
   compose into one model. Regeneration re-reads it every time.
 - **Templates** (`.sdk/tm/`) and **components** (`.sdk/src/cmp/`) are
   the two layers of generation, copied into this repo: templates are the
   literal per-language source, components generate the API-shaped parts.
-- **Regeneration merges.** By default, newly generated content is
-  three-way merged into existing files, so generator updates and local
-  edits usually converge without manual conflict handling. A project can
-  opt for plain overwrite instead.
+- **Regeneration overwrites.** Each run rewrites every generated file from
+  the model, the templates and the components, so an edit made to
+  generated output is lost. Say what this project needs in its own model
+  (`.sdk/model/project.aontu`), or extend a target with a component of its
+  own in `.sdk/src/cmp/<target>/`, registered with `registerComponent`,
+  which `voxgig-sdkgen doctor` reports as an addition rather than drift.
 - **Custom features and entire custom targets** arrive through sdkgen
   packages (`voxgig-sdkgen package add`), on the same rails as the
   bundled languages, and `voxgig-sdkgen doctor` reports any drift from
   what a resync would write.
+
+### Project map
+
+| Path | What it holds | Edit it? |
+| --- | --- | --- |
+| `.sdk/model/project.aontu` | This project's own decisions: package names, versions, features and per-target settings | Yes. The scaffold writes it once and never again. |
+| `.sdk/model/text.aontu` | The README wording, in `main.kit.text`: the tagline, the summary and the entity descriptions | Yes. The scaffold writes it once and never again. |
+| `.sdk/model/guide/guide.aontu` | How the spec's paths map onto entities and operations | Yes. The scaffold writes it once and never again. |
+| `.sdk/model/`, the rest | The API model built from the spec, and the target and feature definitions | Not by hand. Generation, `target add` and a new scaffold run rewrite it. |
+| `.sdk/def/` | The OpenAPI spec | Replace it when the API changes. Generation rebuilds the model from it. |
+| `.sdk/src/cmp/<target>/`, `.sdk/tm/<target>/` | The components and templates that generate each target | Only to add a component of your own. `target add` overwrites the copies. |
+| `.sdk/test/` | The shared test cases the generated tests run | No. |
+| `<target>/`, such as `ts/` | One generated SDK per target, with its own tests | No. Generation overwrites it. |
+| `README.md`, `LICENSE`, `Makefile` and the other root files | The repository's generated files | No. Generation overwrites them. |
+
+### Common commands
+
+Run these from `.sdk/`:
+
+```bash
+npm run generate               # regenerate every target from the model
+npm run add-target <target>    # add a target, or resync one after an sdkgen update
+npm run add-feature <feature>  # add a feature to every target
+npx voxgig-sdkgen doctor       # report where .sdk/ differs from what a resync writes
+```
+
+In an SDK directory, `make test` runs that SDK's tests.
 
 How-to: [customize and propagate templates](https://github.com/voxgig/sdkgen/blob/main/docs/how-to/customize-and-propagate-templates.md).
 The full story: [voxgig.com/sdk/custom](https://voxgig.com/sdk/custom).
